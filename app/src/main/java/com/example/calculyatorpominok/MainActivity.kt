@@ -1,13 +1,14 @@
 package com.example.calculyatorpominok
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
-import com.google.android.material.datepicker.SingleDateSelector
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private var textView: TextView? = null
@@ -23,16 +24,18 @@ class MainActivity : AppCompatActivity() {
         datePicker =  MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select date")
             .build()
-        datePicker?.addOnPositiveButtonClickListener(object : MaterialPickerOnPositiveButtonClickListener<Long>{
-            override fun onPositiveButtonClick(selection: Long?) {
-                textView?.setText(selection.toString())
-            }
-
-        })
-        button?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-               datePicker?.show(supportFragmentManager, "tag")
-            }
-        })
+        datePicker?.addOnPositiveButtonClickListener { selection ->
+            val date = getDate(selection, "dd.MM.yyyy")
+            textView?.text = date
+        }
+        button?.setOnClickListener { datePicker?.show(supportFragmentManager, "tag") }
     }
+}
+
+fun getDate(milliSeconds: Long, dateFormat: String?): String? {
+    val formatter = SimpleDateFormat(dateFormat)
+
+    val calendar: Calendar = Calendar.getInstance()
+    calendar.setTimeInMillis(milliSeconds)
+    return formatter.format(calendar.getTime())
 }
