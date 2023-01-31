@@ -19,14 +19,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textDateOfDeathThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поминки 3 дня"
+        android:visibility="gone"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathNine"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeath"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
         android:id="@+id/textDateOfDeathNine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Поминки 9 дней"
         android:textSize="36sp"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathForty"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathThree"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/textDateOfDeathForty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поминки 40 дней"
+        android:textSize="36sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeath"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathNine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
