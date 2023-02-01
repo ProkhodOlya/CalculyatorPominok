@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathThree"
+        app:layout_constraintBottom_toTopOf="@+id/constraintDateOfDeathThree"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            tools:text="01.02.2023"
+            tools:text="01.02.2023, среда"
             android:textSize="17sp"
             android:textColor="#000000"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -43,44 +43,187 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <TextView
-        android:id="@+id/textDateOfDeathThree"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeathThree"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Поминки 3 дня"
-        android:textSize="36sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathNine"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintDateOfDeath"
-        tools:visibility="visible" />
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintDateOfDeath">
+
+        <TextView
+            android:id="@+id/textDateOfDeathThreeCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Поминки 3 дня"
+            android:textSize="14sp"
+            android:textColor="#626C77"
+            app:layout_constraintBottom_toTopOf="@id/textDateOfDeathThree"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textDateOfDeathThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="03.02.2023, пятница"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeathNine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintDateOfDeathThree">
 
     <TextView
-        android:id="@+id/textDateOfDeathNine"
-        android:layout_width="wrap_content"
+        android:id="@+id/textDateOfDeathNineCaption"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Поминки 9 дней"
-        android:textSize="36sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathForty"
+        android:textSize="14sp"
+        android:textColor="#626C77"
+        app:layout_constraintBottom_toTopOf="@id/textDateOfDeathNine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathThree"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+        <TextView
+            android:id="@+id/textDateOfDeathNine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="09.02.2023, четверг"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeathForty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintDateOfDeathNine">
     <TextView
-        android:id="@+id/textDateOfDeathForty"
-        android:layout_width="wrap_content"
+        android:id="@+id/textDateOfDeathFortyCaption"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Поминки 40 дней"
-        android:textSize="36sp"
-        android:visibility="gone"
+        android:textSize="14sp"
+        android:textColor="#626C77"
+        app:layout_constraintBottom_toTopOf="@id/textDateOfDeathForty"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathNine"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textDateOfDeathForty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="12.03.2023, воскресенье"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeathSixMonths"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintDateOfDeathForty">
+        <TextView
+            android:id="@+id/textDateOfDeathSixMonthsCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Поминки полгода"
+            android:textSize="14sp"
+            android:textColor="#626C77"
+            app:layout_constraintBottom_toTopOf="@id/textDateOfDeathSixMonths"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textDateOfDeathSixMonths"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="01.08.2023, вторник"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeathOneYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintDateOfDeathSixMonths">
+        <TextView
+            android:id="@+id/textDateOfDeathOneYearCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Поминки 1 год"
+            android:textSize="14sp"
+            android:textColor="#626C77"
+            app:layout_constraintBottom_toTopOf="@id/textDateOfDeathOneYear"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textDateOfDeathOneYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="01.02.2024, четверг"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/button"
@@ -93,7 +236,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathForty"
+        app:layout_constraintTop_toBottomOf="@+id/constraintDateOfDeathForty"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
