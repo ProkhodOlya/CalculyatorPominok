@@ -6,29 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textDateOfDeath"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintDateOfDeath"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Дата смерти"
-        android:textSize="36sp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/textDateOfDeathNine"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathThree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textDateOfDeathCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата смерти"
+            android:textSize="14sp"
+            android:textColor="#626C77"
+            app:layout_constraintBottom_toTopOf="@id/textDateOfDeath"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textDateOfDeath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:text="01.02.2023"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/textDateOfDeathThree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Поминки 3 дня"
-        android:visibility="gone"
         android:textSize="36sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathNine"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeath"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintDateOfDeath"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textDateOfDeathNine"
@@ -38,9 +65,10 @@
         android:textSize="36sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/textDateOfDeathForty"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathThree"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathThree"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textDateOfDeathForty"
@@ -49,10 +77,10 @@
         android:text="Поминки 40 дней"
         android:textSize="36sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathNine"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathNine"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/button"
@@ -64,6 +92,8 @@
         android:text="Выберите дату"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathForty"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
