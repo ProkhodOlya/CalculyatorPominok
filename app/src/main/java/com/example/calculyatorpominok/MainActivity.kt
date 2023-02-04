@@ -1,11 +1,10 @@
 package com.example.calculyatorpominok
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,49 +35,41 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         datePicker?.addOnPositiveButtonClickListener { selection ->
-            val dateOfDeath = getDate(selection, DATE_FORMAT)
-            textViewDateOfDeath?.text = dateOfDeath
-
-            val calendar = Calendar.getInstance()
-            calendar.timeInMillis = selection
-            calendar.add(Calendar.DAY_OF_MONTH, (3-1))
-
-            val threeDay = getDate(calendar.timeInMillis, DATE_FORMAT)
-            textViewDateOfDeathThree?.text = threeDay
-            textViewDateOfDeathThree?.visibility = View.VISIBLE
-
-            val nineDate = getDate(selection + NINE_DATE, DATE_FORMAT)
-            textViewDateOfDeathNine?.text = nineDate
-            textViewDateOfDeathNine?.visibility = View.VISIBLE
-            Log.d("ninedate = ", nineDate)
-
-            val fortyDate = getDate(selection + FORTY_DATE, DATE_FORMAT)
-            textViewDateOfDeathForty?.text = fortyDate
-            textViewDateOfDeathForty?.visibility = View.VISIBLE
-
-
-            calendar.timeInMillis = selection
-            calendar.add(Calendar.MONTH, SIXMONTH_DATE)
-            val sixMonthDateCalendar = calendar.timeInMillis
-            val sixMonthDate = getDate(sixMonthDateCalendar, DATE_FORMAT)
-            textViewDateOfDeathSixMonth?.text = sixMonthDate
-            textViewDateOfDeathSixMonth?.visibility = View.VISIBLE
-
-            calendar.timeInMillis = selection
-            calendar.add(Calendar.YEAR, ONEYEAR_DATE)
-            val oneYearDateCalendar = calendar.timeInMillis
-            val oneYearDate = getDate(oneYearDateCalendar, DATE_FORMAT)
-            textViewDateOfDeathOneYear?.text = oneYearDate
-            textViewDateOfDeathOneYear?.visibility = View.VISIBLE
+            setAllDates(selection)
         }
         button?.setOnClickListener { datePicker?.show(supportFragmentManager, "tag") }
+
+        val time = System.currentTimeMillis()
+        setAllDates(time)
+
+    }
+
+    private fun setDate(selection: Long, amount: Int, calendarField: Int, textView: TextView?) {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = selection
+        calendar.add(calendarField, amount)
+        val timeInMillis = calendar.timeInMillis
+        val dateString = getDate(timeInMillis, DATE_FORMAT)
+        textView?.text = dateString
+        textView?.isVisible = true
+    }
+
+    private fun setAllDates(selection: Long) {
+        val dateOfDeath = getDate(selection, DATE_FORMAT)
+        textViewDateOfDeath?.text = dateOfDeath
+
+        setDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathThree)
+        setDate(selection, NINE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathNine)
+        setDate(selection, FORTY_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathForty)
+        setDate(selection, SIXMONTH_DATE, Calendar.MONTH, textViewDateOfDeathSixMonth)
+        setDate(selection, ONEYEAR_DATE, Calendar.YEAR, textViewDateOfDeathOneYear)
     }
 
     companion object {
         private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
-        private const val THREE_DATE = 1000 * 60 * 60 * 24 * (3 - 1)
-        private const val NINE_DATE = 1000 * 60 * 60 * 24 * (9 - 1)
-        private const val FORTY_DATE: Long = 1000L * 60L * 60L * 24L * (40L - 1L)
+        private const val THREE_DATE = 3 - 1
+        private const val NINE_DATE = 9 - 1
+        private const val FORTY_DATE = 40 - 1
         private const val SIXMONTH_DATE = 6
         private const val ONEYEAR_DATE = 1
 
