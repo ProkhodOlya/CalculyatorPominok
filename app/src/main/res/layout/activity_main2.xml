@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,9 +26,7 @@
 
         <!-- Scrollable content -->
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
@@ -64,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Дата смерти"
+                    android:text="@string/date_of_death_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +86,7 @@
                     android:id="@+id/textDateOfDeathThreeCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Поминки 3 дня"
+                    android:text="@string/date_of_death_3day_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathThree"
@@ -124,7 +123,7 @@
                     android:id="@+id/textDateOfDeathNineCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Поминки 9 дней"
+                    android:text="@string/date_of_death_9day_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathNine"
@@ -163,7 +162,7 @@
                     android:id="@+id/textDateOfDeathFortyCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Поминки 40 дней"
+                    android:text="@string/date_of_deatg_40day_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathForty"
@@ -201,7 +200,7 @@
                     android:id="@+id/textDateOfDeathSixMonthsCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Поминки полгода"
+                    android:text="@string/date_of_death_6month_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathSixMonths"
@@ -239,7 +238,7 @@
                     android:id="@+id/textDateOfDeathOneYearCaption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Поминки 1 год"
+                    android:text="@string/date_of_death_1year_caption"
                     android:textColor="#626C77"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathOneYear"
@@ -268,9 +267,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Выберите дату"
+                android:text="@string/change_date"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

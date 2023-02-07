@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAllDates(selection: Long) {
-        val dateOfDeath = getDate(selection, DATE_FORMAT)
+        val dateOfDeath = getDate(selection, DATE_FORMAT_DEATH)
         textViewDateOfDeath?.text = dateOfDeath
 
         setDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathThree)
@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+        private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
         private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
         private const val THREE_DATE = 3 - 1
         private const val NINE_DATE = 9 - 1

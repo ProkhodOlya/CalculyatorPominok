@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калькулятор поминок</string>
+    <string name="date_of_death_caption">Дата смерти</string>
+    <string name="date_of_death_3day_caption">Поминки 3 дня</string>
+    <string name="date_of_death_9day_caption">Поминки 9 дней</string>
+    <string name="date_of_deatg_40day_caption">Поминки 40 дней</string>
+    <string name="date_of_death_6month_caption">Поминки полгода</string>
+    <string name="date_of_death_1year_caption">Поминки 1 год</string>
+    <string name="change_date">Выберите дату</string>
+</resources>
