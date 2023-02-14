@@ -8,4 +8,5 @@
     <string name="date_of_death_6month_caption">Поминки полгода</string>
     <string name="date_of_death_1year_caption">Поминки 1 год</string>
     <string name="change_date">Выберите дату</string>
+    <string name="details">Подробнее</string>
 </resources>
