@@ -1,5 +1,6 @@
 package com.example.calculyatorpominok
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -9,9 +10,11 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
     private var textViewDateOfDeath: TextView? = null
     private var textViewDateOfDeathThree: TextView? = null
+    private var textViewDateOfDeathThreeDetails: TextView? = null
     private var textViewDateOfDeathNine: TextView? = null
     private var textViewDateOfDeathForty: TextView? = null
     private var textViewDateOfDeathSixMonth: TextView? = null
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
         textViewDateOfDeath = findViewById(R.id.textDateOfDeath)
         textViewDateOfDeathThree = findViewById(R.id.textDateOfDeathThree)
+        textViewDateOfDeathThreeDetails = findViewById(R.id.textDateOfDeathThreeDetails)
         textViewDateOfDeathNine = findViewById(R.id.textDateOfDeathNine)
         textViewDateOfDeathForty = findViewById(R.id.textDateOfDeathForty)
         textViewDateOfDeathSixMonth = findViewById(R.id.textDateOfDeathSixMonths)
@@ -42,6 +46,10 @@ class MainActivity : AppCompatActivity() {
         val time = System.currentTimeMillis()
         setAllDates(time)
 
+        textViewDateOfDeathThreeDetails?.setOnClickListener {
+            val intent = Intent(this, DetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setDate(selection: Long, amount: Int, calendarField: Int, textView: TextView?) {
@@ -79,7 +87,6 @@ class MainActivity : AppCompatActivity() {
 
 fun getDate(milliSeconds: Long, dateFormat: String?): String {
     val formatter = SimpleDateFormat(dateFormat)
-
     val calendar: Calendar = Calendar.getInstance()
     calendar.timeInMillis = milliSeconds
     return formatter.format(calendar.time)

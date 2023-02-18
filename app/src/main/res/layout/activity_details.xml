@@ -30,6 +30,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
             tools:context=".DetailsActivity">
 
             <TextView
@@ -42,6 +44,7 @@
                 android:textColor="#000000"
                 android:textSize="26sp"
                 android:textStyle="bold"
+                android:text="@string/date_of_death_3day_caption"
                 app:layout_constraintBottom_toTopOf="@id/textDateOfDeathThreeCaptionDetails"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -52,14 +55,15 @@
                 android:id="@+id/textDateOfDeathThreeCaptionDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="text description"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Utils. StingConst.THIRD_DAY_DESCRIPTION"
                 android:textColor="#626C77"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="id/textDateOfDeathThreeCaption" />
-
+                app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathThreeCaption" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

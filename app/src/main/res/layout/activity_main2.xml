@@ -12,8 +12,8 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:background = "@color/primary"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary"
             app:menu="@menu/top_app_bar"
             app:title="@string/app_name" />
 
@@ -102,10 +102,10 @@
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathThreeCaption"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathThreeDetails"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathThreeCaption"
                     tools:text="03.02.2023, пятница"
                     tools:visibility="visible" />
 
@@ -113,13 +113,15 @@
                     android:id="@+id/textDateOfDeathThreeDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text="@string/details"
                     android:textColor="#626C77"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathThree"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathThree" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,10 +154,10 @@
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathNineCaption"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathNineDetails"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathNineCaption"
                     tools:text="09.02.2023, четверг"
                     tools:visibility="visible" />
 
@@ -166,10 +168,10 @@
                     android:text="@string/details"
                     android:textColor="#626C77"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathNine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathNine" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -203,10 +205,10 @@
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathFortyCaption"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathFortyDetails"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathFortyCaption"
                     tools:text="12.03.2023, воскресенье"
                     tools:visibility="visible" />
 
@@ -217,10 +219,10 @@
                     android:text="@string/details"
                     android:textColor="#626C77"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathForty"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathForty" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -253,10 +255,10 @@
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathSixMonthsCaption"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathSixMonthsDetails"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathSixMonthsCaption"
                     tools:text="01.08.2023, вторник"
                     tools:visibility="visible" />
 
@@ -267,10 +269,10 @@
                     android:text="@string/details"
                     android:textColor="#626C77"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathSixMonths"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathSixMonths" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -303,10 +305,10 @@
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathOneYearCaption"
                     app:layout_constraintBottom_toTopOf="@id/textDateOfDeathOneYearDetails"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathOneYearCaption"
                     tools:text="01.02.2024, четверг"
                     tools:visibility="visible" />
 
@@ -317,10 +319,10 @@
                     android:text="@string/details"
                     android:textColor="#626C77"
                     android:textSize="14sp"
-                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathOneYear"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textDateOfDeathOneYear" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
