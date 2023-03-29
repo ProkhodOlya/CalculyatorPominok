@@ -9,6 +9,8 @@ import androidx.core.view.isVisible
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
+import com.example.calculyatorpominok.utils.DayOfCommemoration
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,23 +18,31 @@ class MainActivity : AppCompatActivity() {
     private var textViewDateOfDeathThree: TextView? = null
     private var textViewDateOfDeathThreeDetails: TextView? = null
     private var textViewDateOfDeathNine: TextView? = null
+    private var textViewDateOfDeathNineDetails: TextView? = null
     private var textViewDateOfDeathForty: TextView? = null
+    private var textViewDateOfDeathFortyDetails: TextView? = null
     private var textViewDateOfDeathSixMonth: TextView? = null
+    private var textViewDateOfDeathSixMonthDetails: TextView? = null
     private var textViewDateOfDeathOneYear: TextView? = null
+    private var textViewDateOfDeathOneYearDetails: TextView? = null
     private var button: Button? = null
     private var datePicker: MaterialDatePicker<Long>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
         textViewDateOfDeath = findViewById(R.id.textDateOfDeath)
         textViewDateOfDeathThree = findViewById(R.id.textDateOfDeathThree)
         textViewDateOfDeathThreeDetails = findViewById(R.id.textDateOfDeathThreeDetails)
         textViewDateOfDeathNine = findViewById(R.id.textDateOfDeathNine)
+        textViewDateOfDeathNineDetails = findViewById(R.id.textDateOfDeathNineDetails)
         textViewDateOfDeathForty = findViewById(R.id.textDateOfDeathForty)
+        textViewDateOfDeathFortyDetails = findViewById(R.id.textDateOfDeathFortyDetails)
         textViewDateOfDeathSixMonth = findViewById(R.id.textDateOfDeathSixMonths)
+        textViewDateOfDeathSixMonthDetails = findViewById(R.id.textDateOfDeathSixMonthsDetails)
         textViewDateOfDeathOneYear = findViewById(R.id.textDateOfDeathOneYear)
+        textViewDateOfDeathOneYearDetails = findViewById(R.id.textDateOfDeathOneYearDetails)
         button = findViewById(R.id.button)
         datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("В")
@@ -47,8 +57,23 @@ class MainActivity : AppCompatActivity() {
         setAllDates(time)
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {
-            val intent = Intent(this, DetailsActivity::class.java)
-            startActivity(intent)
+            openDetails(DayOfCommemoration.THREE_DAY)
+        }
+
+        textViewDateOfDeathNineDetails?.setOnClickListener {
+            openDetails(DayOfCommemoration.NINE_DAY)
+        }
+
+        textViewDateOfDeathFortyDetails?.setOnClickListener {
+            openDetails(DayOfCommemoration.FORTY_DAY)
+        }
+
+        textViewDateOfDeathSixMonthDetails?.setOnClickListener {
+            openDetails(DayOfCommemoration.SIX_MONTH)
+        }
+
+        textViewDateOfDeathOneYearDetails?.setOnClickListener {
+            openDetails(DayOfCommemoration.ONE_YEAR)
         }
     }
 
@@ -65,12 +90,17 @@ class MainActivity : AppCompatActivity() {
     private fun setAllDates(selection: Long) {
         val dateOfDeath = getDate(selection, DATE_FORMAT_DEATH)
         textViewDateOfDeath?.text = dateOfDeath
-
         setDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathThree)
         setDate(selection, NINE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathNine)
         setDate(selection, FORTY_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathForty)
         setDate(selection, SIXMONTH_DATE, Calendar.MONTH, textViewDateOfDeathSixMonth)
         setDate(selection, ONEYEAR_DATE, Calendar.YEAR, textViewDateOfDeathOneYear)
+    }
+
+    private fun openDetails (dayOfCommemoration: DayOfCommemoration) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(ARGS_DAY_OF_COMMEMORATION, dayOfCommemoration.value)
+        startActivity(intent)
     }
 
     companion object {
@@ -81,7 +111,6 @@ class MainActivity : AppCompatActivity() {
         private const val FORTY_DATE = 40 - 1
         private const val SIXMONTH_DATE = 6
         private const val ONEYEAR_DATE = 1
-
     }
 }
 
@@ -91,3 +120,4 @@ fun getDate(milliSeconds: Long, dateFormat: String?): String {
     calendar.timeInMillis = milliSeconds
     return formatter.format(calendar.time)
 }
+
