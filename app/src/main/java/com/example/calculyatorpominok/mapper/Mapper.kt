@@ -1,12 +1,6 @@
 package com.example.calculyatorpominok.mapper
 
-import com.example.calculyatorpominok.R
 import com.example.calculyatorpominok.utils.DayOfCommemoration
-import com.example.calculyatorpominok.utils.FORTY_DAY_DESCRIPTION
-import com.example.calculyatorpominok.utils.NINE_DAY_DESCRIPTION
-import com.example.calculyatorpominok.utils.ONE_YEAR_DESCRIPTION
-import com.example.calculyatorpominok.utils.SIX_MONTH_DESCRIPTION
-import com.example.calculyatorpominok.utils.THREE_DAY_DESCRIPTION
 
 fun Int.mapToDayOfCommemoration():DayOfCommemoration? =
     when (this) {
