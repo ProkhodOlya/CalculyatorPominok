@@ -7,4 +7,30 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primary">#006783</color>
+    <color name="onPrimary">#ffffff</color>
+    <color name="primaryContainer">#bde9ff</color>
+    <color name="onPrimaryContainer">#001f2a</color>
+    <color name="secondary">#4d616c</color>
+    <color name="onSecondary">#ffffff</color>
+    <color name="secondaryContainer">#d0e6f2</color>
+    <color name="onSecondaryContainer">#081e27</color>
+    <color name="tertiary">#5d5b7d</color>
+    <color name="onTertiary">#ffffff</color>
+    <color name="tertiaryContainer">#e3dfff</color>
+    <color name="onTertiaryContainer">#191836</color>
+    <color name="error">#ba1a1a</color>
+    <color name="onError">#ffffff</color>
+    <color name="errorContainer">#ffdad6</color>
+    <color name="onErrorContainer">#410002</color>
+    <color name="background">#fbfcfe</color>
+    <color name="onBackground">#191c1e</color>
+    <color name="surface">#fbfcfe</color>
+    <color name="onSurface">#191c1e</color>
+    <color name="outline">#70787d</color>
+    <color name="surfaceVariant">#dce4e9</color>
+    <color name="onSurfaceVariant">#40484c</color>
 </resources>
+
+

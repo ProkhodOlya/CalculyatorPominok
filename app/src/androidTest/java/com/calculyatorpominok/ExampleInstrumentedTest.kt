@@ -1,4 +1,4 @@
-package com.example.calculyatorpominok
+package com.calculyatorpominok
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
