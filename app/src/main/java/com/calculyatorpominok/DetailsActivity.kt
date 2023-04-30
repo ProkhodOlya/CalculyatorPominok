@@ -1,12 +1,13 @@
-package com.example.calculyatorpominok
+package com.calculyatorpominok
 
 import android.graphics.NinePatch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.example.calculyatorpominok.mapper.mapToDayOfCommemoration
-import com.example.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
-import com.example.calculyatorpominok.utils.DayOfCommemoration
+import com.example.calculyatorpominok.R
+import com.calculyatorpominok.mapper.mapToDayOfCommemoration
+import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
+import com.calculyatorpominok.utils.DayOfCommemoration
 import com.google.android.material.appbar.MaterialToolbar
 
 

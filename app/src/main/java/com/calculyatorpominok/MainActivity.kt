@@ -1,4 +1,4 @@
-package com.example.calculyatorpominok
+package com.calculyatorpominok
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import com.example.calculyatorpominok.R
 import com.example.calculyatorpominok.R.menu.top_app_bar
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
-import com.example.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
-import com.example.calculyatorpominok.utils.DayOfCommemoration
+import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
+import com.calculyatorpominok.utils.DayOfCommemoration
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward

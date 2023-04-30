@@ -1,8 +1,8 @@
-package com.example.calculyatorpominok.mapper
+package com.calculyatorpominok.mapper
 
-import com.example.calculyatorpominok.utils.DayOfCommemoration
+import com.calculyatorpominok.utils.DayOfCommemoration
 
-fun Int.mapToDayOfCommemoration():DayOfCommemoration? =
+fun Int.mapToDayOfCommemoration(): DayOfCommemoration? =
     when (this) {
         DayOfCommemoration.THREE_DAY.value -> DayOfCommemoration.THREE_DAY
         DayOfCommemoration.NINE_DAY.value -> DayOfCommemoration.NINE_DAY

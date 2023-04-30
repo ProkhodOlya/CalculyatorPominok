@@ -1,4 +1,4 @@
-package com.example.calculyatorpominok.utils
+package com.calculyatorpominok.utils
 
 const val THREE_DAY_DESCRIPTION = """Поминки после похорон на третий день традиционно связывают с 
 чудесным воскрешением Иисуса Христа и образом Пресвятой Троицы. В течение первых двух дней после 

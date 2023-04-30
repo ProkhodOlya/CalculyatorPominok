@@ -1,4 +1,4 @@
-package com.example.calculyatorpominok.utils
+package com.calculyatorpominok.utils
 
 enum class DayOfCommemoration(val value: Int) {
     THREE_DAY(3),

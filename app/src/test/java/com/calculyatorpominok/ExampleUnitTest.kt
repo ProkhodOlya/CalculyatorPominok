@@ -1,4 +1,4 @@
-package com.example.calculyatorpominok
+package com.calculyatorpominok
 
 import org.junit.Test
 
