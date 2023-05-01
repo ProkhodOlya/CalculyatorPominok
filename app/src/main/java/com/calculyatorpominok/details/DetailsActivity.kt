@@ -1,6 +1,5 @@
-package com.calculyatorpominok
+package com.calculyatorpominok.details
 
-import android.graphics.NinePatch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -19,7 +18,7 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        topAppBar = findViewById(R.id.topAppBar)
+        topAppBar = findViewById(R.id.toolbar)
         setSupportActionBar(topAppBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

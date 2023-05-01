@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalculyatorPominok">
         <activity
-            android:name="com.calculyatorpominok.DetailsActivity"
+            android:name="com.calculyatorpominok.details.DetailsActivity"
             android:exported="false" />
         <activity
             android:name="com.calculyatorpominok.MainActivity"
