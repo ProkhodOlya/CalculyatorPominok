@@ -1,34 +1,46 @@
-package com.calculyatorpominok
+package com.calculyatorpominok.details
 
-import android.graphics.NinePatch
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import com.example.calculyatorpominok.R
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
 import com.calculyatorpominok.utils.DayOfCommemoration
-import com.google.android.material.appbar.MaterialToolbar
+import com.example.calculyatorpominok.R
+import androidx.appcompat.widget.Toolbar
 
-
-class DetailsActivity : AppCompatActivity() {
+class DetailsFragment : Fragment() {
     private var textViewDateOfDeathDescription: TextView? = null
     private var textViewDateOfDeathCaption: TextView? = null
-    private var topAppBar: MaterialToolbar? = null
+    private var toolbar: Toolbar? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
-        topAppBar = findViewById(R.id.topAppBar)
-        setSupportActionBar(topAppBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        topAppBar?.setNavigationOnClickListener {
-            finish()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_details, container, false)
+
+        toolbar = view.findViewById<Toolbar?>(R.id.toolbar).apply {
+            setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+            setNavigationOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
         }
-        textViewDateOfDeathDescription = findViewById(R.id.textDateOfDeathDescription)
-        textViewDateOfDeathCaption = findViewById(R.id.textDateOfDeathCaption)
-        val dayOfCommemoration = intent.getIntExtra(ARGS_DAY_OF_COMMEMORATION, -1)
+
+        textViewDateOfDeathDescription = view.findViewById(R.id.textDateOfDeathDescription)
+        textViewDateOfDeathCaption = view.findViewById(R.id.textDateOfDeathCaption)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val dayOfCommemoration = arguments?.getInt(ARGS_DAY_OF_COMMEMORATION, -1) ?: -1
 
         when (dayOfCommemoration.mapToDayOfCommemoration()) {
             DayOfCommemoration.THREE_DAY -> {
@@ -41,7 +53,7 @@ class DetailsActivity : AppCompatActivity() {
             }
             DayOfCommemoration.FORTY_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_deatg_40day_caption)
-                textViewDateOfDeathDescription?.text =  getString(R.string.forty_day_description)
+                textViewDateOfDeathDescription?.text = getString(R.string.forty_day_description)
             }
             DayOfCommemoration.SIX_MONTH -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_6month_caption)
@@ -56,6 +68,16 @@ class DetailsActivity : AppCompatActivity() {
                 textViewDateOfDeathDescription?.text = getString(R.string.error)
             }
         }
+    }
 
+    companion object {
+        const val DETAILS_FRAGMENT = "detailsFragment"
+
+        fun newInstance(dayOfCommemoration: Int) =
+            DetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARGS_DAY_OF_COMMEMORATION, dayOfCommemoration)
+                }
+            }
     }
 }

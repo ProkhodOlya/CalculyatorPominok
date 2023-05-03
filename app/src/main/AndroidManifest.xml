@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalculyatorPominok">
         <activity
-            android:name="com.calculyatorpominok.DetailsActivity"
-            android:exported="false" />
-        <activity
             android:name="com.calculyatorpominok.MainActivity"
             android:exported="true">
             <intent-filter>
