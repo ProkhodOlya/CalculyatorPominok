@@ -1,6 +1,5 @@
 package com.calculyatorpominok.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.calculyatorpominok.details.DetailsActivity
-import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
+import androidx.fragment.app.FragmentTransaction
+import com.calculyatorpominok.details.DetailsFragment
+import com.calculyatorpominok.details.DetailsFragment.Companion.DETAILS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
@@ -20,6 +20,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class MainFragment : Fragment() {
     private var textViewDateOfDeath: TextView? = null
@@ -149,9 +150,14 @@ class MainFragment : Fragment() {
     }
 
     private fun openDetails(dayOfCommemoration: DayOfCommemoration) {
-        val intent = Intent(requireContext(), DetailsActivity::class.java)
-        intent.putExtra(ARGS_DAY_OF_COMMEMORATION, dayOfCommemoration.value)
-        startActivity(intent)
+        val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+        val detailsFragment = DetailsFragment.newInstance(dayOfCommemoration.value)
+        fragmentTransaction.add(R.id.containerFragment, detailsFragment, DETAILS_FRAGMENT)
+            .addToBackStack(DETAILS_FRAGMENT)
+            .setCustomAnimations(
+                android.R.animator.fade_in, android.R.animator.fade_out
+            )
+            .commit()
     }
 
     private fun setDate(selection: Long, amount: Int, calendarField: Int, textView: TextView?) {
@@ -174,8 +180,9 @@ class MainFragment : Fragment() {
         private const val ONEYEAR_DATE = 1
     }
 
-    fun getDate(milliSeconds: Long, dateFormat: String?): String {
-        val formatter = SimpleDateFormat(dateFormat)
+    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
+        //TODO лучше не использовать Locale.getDefault() - медленно работает
+        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = milliSeconds
         return formatter.format(calendar.time)
