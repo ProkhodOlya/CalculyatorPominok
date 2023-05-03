@@ -169,7 +169,13 @@ class MainFragment : Fragment() {
         textView?.text = dateString
         textView?.isVisible = true
     }
-
+    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
+        //TODO лучше не использовать Locale.getDefault() - медленно работает
+        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return formatter.format(calendar.time)
+    }
     companion object {
         private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
         private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
@@ -178,13 +184,9 @@ class MainFragment : Fragment() {
         private const val FORTY_DATE = 40 - 1
         private const val SIXMONTH_DATE = 6
         private const val ONEYEAR_DATE = 1
-    }
 
-    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
-        //TODO лучше не использовать Locale.getDefault() - медленно работает
-        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.timeInMillis = milliSeconds
-        return formatter.format(calendar.time)
+        const val MAIN_FRAGMENT = "mainFragment"
+
+        fun newInstance() = MainFragment()
     }
 }
