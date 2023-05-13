@@ -1,20 +1,28 @@
 package com.calculyatorpominok.data
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.calculyatorpominok.MainActivity
 
 
 class DateRepository {
-    private var sharedPreferences : SharedPreferences? = null
-    fun setDate (mainActivity: MainActivity) {
-        sharedPreferences = mainActivity.getPreferences(MODE_PRIVATE)
-        val ed: SharedPreferences.Editor = sharedPreferences.edit()
-        ed.putString(SAVED_TEXT, etText.getText().toString())
-        ed.commit()
+    private var sharedPreferences: SharedPreferences? = null
+
+
+    fun setSavedDate(context: Context, date: Long) {
+        sharedPreferences = context.getSharedPreferences("config-pref", MODE_PRIVATE)
+        val sharedPrefEditor = sharedPreferences?.edit()
+        sharedPrefEditor?.putLong(SAVED_DATE, date)
+        sharedPrefEditor?.apply()
     }
-    fun getDate() {
-        sharedPreferences = getPreferences(MODE_PRIVATE)
-        val savedText: String = sharedPreferences.getString(SAVED_TEXT, "")
+
+    fun getSavedDate(context: Context): Long {
+        val sharedPreferences = context.getSharedPreferences("config-pref", MODE_PRIVATE)
+        val savedDate: Long = sharedPreferences.getLong(SAVED_DATE, -1)
+        return savedDate
+    }
+
+    companion object {
+        const val SAVED_DATE = "savedDate"
     }
 }

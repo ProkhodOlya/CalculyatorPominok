@@ -1,6 +1,8 @@
 package com.calculyatorpominok.details
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +47,16 @@ class DetailsFragment : Fragment() {
         when (dayOfCommemoration.mapToDayOfCommemoration()) {
             DayOfCommemoration.THREE_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_3day_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.three_day_description)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    textViewDateOfDeathDescription?.text = Html.fromHtml(
+                        getString(R.string.three_day_description),
+                        Html.FROM_HTML_MODE_COMPACT
+                    )
+                } else {
+                    @Suppress("DEPRECATION")
+                    textViewDateOfDeathDescription?.text =
+                        Html.fromHtml(getString(R.string.three_day_description))
+                }
             }
             DayOfCommemoration.NINE_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_9day_caption)

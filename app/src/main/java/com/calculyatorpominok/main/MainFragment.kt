@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.calculyatorpominok.data.DateRepository
 import com.calculyatorpominok.details.DetailsFragment
 import com.calculyatorpominok.details.DetailsFragment.Companion.DETAILS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
@@ -97,11 +98,17 @@ class MainFragment : Fragment() {
 
         datePicker?.addOnPositiveButtonClickListener { selection ->
             setAllDates(selection)
+            DateRepository().setSavedDate(requireContext(), selection)
         }
         button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
 
-        val time = System.currentTimeMillis()
-        setAllDates(time)
+        val dateRepository = DateRepository()
+        val time = dateRepository.getSavedDate(requireContext())
+        if (time > 0) {
+            setAllDates(time)
+        } else {
+            setAllDates(System.currentTimeMillis())
+        }
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {
             openDetails(DayOfCommemoration.THREE_DAY)
@@ -169,6 +176,7 @@ class MainFragment : Fragment() {
         textView?.text = dateString
         textView?.isVisible = true
     }
+
     private fun getDate(milliSeconds: Long, dateFormat: String?): String {
         //TODO лучше не использовать Locale.getDefault() - медленно работает
         val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
@@ -176,6 +184,7 @@ class MainFragment : Fragment() {
         calendar.timeInMillis = milliSeconds
         return formatter.format(calendar.time)
     }
+
     companion object {
         private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
         private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
