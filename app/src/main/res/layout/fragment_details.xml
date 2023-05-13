@@ -44,41 +44,22 @@
                 android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="@string/date_of_death_3day_caption"
-                app:layout_constraintBottom_toTopOf="@id/textDateOfDeathDescription"
+                app:layout_constraintBottom_toTopOf="@id/webViewDateOfDeath"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
-
-            <TextView
-                android:id="@+id/textDateOfDeathDescription"
+            <WebView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/webViewDateOfDeath"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:textColor="#626C77"
-                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathCaption"
-                tools:text="Поминки после похорон на третий день традиционно связывают с
-чудесным воскрешением Иисуса Христа и образом Пресвятой Троицы. В течение первых двух дней после
-смерти душа находится на земле возле родных и посещает места, которые были ей дороги при жизни. И
-только на третий день происходит ее вознесение на небо, где она предстает перед Господом. Родные в
-этот день накрывают поминальный стол. Это происходит сразу или спустя некоторое время после того,
-как закончится отпевание либо гражданская панихида и похороны. Трапеза проводится не спеша, каждый
-из пришедших может высказаться, рассказать что-то хорошее об усопшем, выразить свое горе.
-Местом проведения поминок может служить как дом умершего, так и кафе, ресторан, банкетный зал,
-специально снятые для этой церемонии. При этом существует несколько правил, которых следует
-придерживаться:
-1. Прийти на обед может любой человек, который хочет проводить усопшего в последний путь.
-2. Перед тем как приступить к трапезе, читают молитву «Отче наш».
-3. Если на обеде присутствует священнослужитель, то он проводит заупокойную литургию и благословляет пищу.
-4. Всех присутствующих рассаживают за столом на отдельные места.
-5. Первым блюдом подается кутья, освященная в храме во время прощальной панихиды.
-6. Перед тем как подадут сладкое, присутствующие исполняют стихиру на глас 6.
-7. Обед завершается приемом последнего блюда и заупокойной чаши, а также принесением благодарения" />
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
