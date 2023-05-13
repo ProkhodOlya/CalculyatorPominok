@@ -43,6 +43,7 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
+    private var dateRepository: DateRepository? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +69,7 @@ class MainFragment : Fragment() {
         constraintDetailsOneYear = view.findViewById(R.id.constraintDateOfDeathOneYear)
         button = view.findViewById(R.id.button)
         toolbar = view.findViewById(R.id.toolbar)
+        dateRepository = DateRepository.getInstance(requireContext())
 
         return view
     }
@@ -98,12 +100,11 @@ class MainFragment : Fragment() {
 
         datePicker?.addOnPositiveButtonClickListener { selection ->
             setAllDates(selection)
-            DateRepository().setSavedDate(requireContext(), selection)
+            dateRepository?.setSavedDate(selection)
         }
         button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
 
-        val dateRepository = DateRepository()
-        val time = dateRepository.getSavedDate(requireContext())
+        val time = dateRepository?.getSavedDate() ?: System.currentTimeMillis()
         if (time > 0) {
             setAllDates(time)
         } else {
