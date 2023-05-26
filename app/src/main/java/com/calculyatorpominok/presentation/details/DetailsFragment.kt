@@ -1,4 +1,4 @@
-package com.calculyatorpominok.details
+package com.calculyatorpominok.presentation.details
 
 import android.os.Build
 import android.os.Bundle
@@ -48,16 +48,6 @@ class DetailsFragment : Fragment() {
         when (dayOfCommemoration.mapToDayOfCommemoration()) {
             DayOfCommemoration.THREE_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_3day_caption)
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    textViewDateOfDeathDescription?.text = Html.fromHtml(
-//                        getString(R.string.three_day_description),
-//                        Html.FROM_HTML_MODE_COMPACT
-//                    )
-//                } else {
-//                    @Suppress("DEPRECATION")
-//                    textViewDateOfDeathDescription?.text =
-//                        Html.fromHtml(getString(R.string.three_day_description))
-//                }
                 webViewDateOfDeath?.loadData(
                     getString(R.string.three_day_description),
                     "text/html; charset=utf-8",

@@ -1,4 +1,4 @@
-package com.calculyatorpominok.main
+package com.calculyatorpominok.presentation.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.data.DateRepository
-import com.calculyatorpominok.details.DetailsFragment
-import com.calculyatorpominok.details.DetailsFragment.Companion.DETAILS_FRAGMENT
+import com.calculyatorpominok.presentation.details.DetailsFragment
+import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
@@ -22,6 +26,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
     private var textViewDateOfDeath: TextView? = null
@@ -43,7 +48,7 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
-    private var dateRepository: DateRepository? = null
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,14 +74,25 @@ class MainFragment : Fragment() {
         constraintDetailsOneYear = view.findViewById(R.id.constraintDateOfDeathOneYear)
         button = view.findViewById(R.id.button)
         toolbar = view.findViewById(R.id.toolbar)
-        dateRepository = DateRepository.getInstance(requireContext())
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { mainState ->
+                    textViewDateOfDeath?.text = mainState.dateOfDeath
+                    textViewDateOfDeathThree?.text = mainState.threeDateOfDeath
+                    textViewDateOfDeathNine?.text = mainState.nineDateOfDeath
+                    textViewDateOfDeathForty?.text = mainState.fortyDateOfDeath
+                    textViewDateOfDeathSixMonth?.text = mainState.sixMonthDateOfDeath
+                    textViewDateOfDeathOneYear?.text = mainState.oneYearDateOfDeath
+                }
+            }
+        }
+        viewModel.start()
         toolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.calendar -> {
@@ -100,16 +116,8 @@ class MainFragment : Fragment() {
 
         datePicker?.addOnPositiveButtonClickListener { selection ->
             setAllDates(selection)
-            dateRepository?.setSavedDate(selection)
         }
         button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
-
-        val time = dateRepository?.getSavedDate() ?: System.currentTimeMillis()
-        if (time > 0) {
-            setAllDates(time)
-        } else {
-            setAllDates(System.currentTimeMillis())
-        }
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {
             openDetails(DayOfCommemoration.THREE_DAY)
