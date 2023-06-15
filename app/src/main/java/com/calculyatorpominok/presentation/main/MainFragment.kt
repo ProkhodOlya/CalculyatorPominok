@@ -1,4 +1,4 @@
-package com.calculyatorpominok.main
+package com.calculyatorpominok.presentation.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,20 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.calculyatorpominok.details.DetailsFragment
-import com.calculyatorpominok.details.DetailsFragment.Companion.DETAILS_FRAGMENT
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.presentation.details.DetailsFragment
+import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
     private var textViewDateOfDeath: TextView? = null
@@ -42,6 +43,7 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,35 +75,15 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        subscribeToState()
+        viewModel.start()
+        initView()
+    }
 
-        toolbar?.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.calendar -> {
-                    // Navigate to settings screen.
-                    datePicker?.show(parentFragmentManager, "datePicker")
-                    true
-                }
-                else -> false
-            }
-        }
-
-        val calendarConstraints = CalendarConstraints
-            .Builder()
-            .setValidator(
-                DateValidatorPointBackward.now()
-            ).build()
-        datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(R.string.choose_date)
-            .setCalendarConstraints(calendarConstraints)
-            .build()
-
-        datePicker?.addOnPositiveButtonClickListener { selection ->
-            setAllDates(selection)
-        }
+    private fun initView() {
+        initToolbar()
+        initDatePicker()
         button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
-
-        val time = System.currentTimeMillis()
-        setAllDates(time)
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {
             openDetails(DayOfCommemoration.THREE_DAY)
@@ -139,14 +121,47 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setAllDates(selection: Long) {
-        val dateOfDeath = getDate(selection, DATE_FORMAT_DEATH)
-        textViewDateOfDeath?.text = dateOfDeath
-        setDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathThree)
-        setDate(selection, NINE_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathNine)
-        setDate(selection, FORTY_DATE, Calendar.DAY_OF_MONTH, textViewDateOfDeathForty)
-        setDate(selection, SIXMONTH_DATE, Calendar.MONTH, textViewDateOfDeathSixMonth)
-        setDate(selection, ONEYEAR_DATE, Calendar.YEAR, textViewDateOfDeathOneYear)
+    private fun initDatePicker() {
+        val calendarConstraints = CalendarConstraints
+            .Builder()
+            .setValidator(
+                DateValidatorPointBackward.now()
+            ).build()
+        datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.choose_date)
+            .setCalendarConstraints(calendarConstraints)
+            .build()
+        datePicker?.addOnPositiveButtonClickListener { selection ->
+            viewModel.onSelectDate(selection)
+        }
+    }
+
+    private fun initToolbar() {
+        toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.calendar -> {
+                    // Navigate to settings screen.
+                    datePicker?.show(parentFragmentManager, "datePicker")
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun subscribeToState() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { mainState ->
+                    textViewDateOfDeath?.text = mainState.dateOfDeath
+                    textViewDateOfDeathThree?.text = mainState.threeDateOfDeath
+                    textViewDateOfDeathNine?.text = mainState.nineDateOfDeath
+                    textViewDateOfDeathForty?.text = mainState.fortyDateOfDeath
+                    textViewDateOfDeathSixMonth?.text = mainState.sixMonthDateOfDeath
+                    textViewDateOfDeathOneYear?.text = mainState.oneYearDateOfDeath
+                }
+            }
+        }
     }
 
     private fun openDetails(dayOfCommemoration: DayOfCommemoration) {
@@ -160,31 +175,9 @@ class MainFragment : Fragment() {
             .commit()
     }
 
-    private fun setDate(selection: Long, amount: Int, calendarField: Int, textView: TextView?) {
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = selection
-        calendar.add(calendarField, amount)
-        val timeInMillis = calendar.timeInMillis
-        val dateString = getDate(timeInMillis, DATE_FORMAT)
-        textView?.text = dateString
-        textView?.isVisible = true
-    }
-
     companion object {
-        private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
-        private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
-        private const val THREE_DATE = 3 - 1
-        private const val NINE_DATE = 9 - 1
-        private const val FORTY_DATE = 40 - 1
-        private const val SIXMONTH_DATE = 6
-        private const val ONEYEAR_DATE = 1
-    }
+        const val MAIN_FRAGMENT = "mainFragment"
 
-    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
-        //TODO лучше не использовать Locale.getDefault() - медленно работает
-        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.timeInMillis = milliSeconds
-        return formatter.format(calendar.time)
+        fun newInstance() = MainFragment()
     }
 }

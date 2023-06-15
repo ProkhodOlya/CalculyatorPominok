@@ -1,19 +1,20 @@
-package com.calculyatorpominok.details
+package com.calculyatorpominok.presentation.details
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
-import androidx.appcompat.widget.Toolbar
 
 class DetailsFragment : Fragment() {
-    private var textViewDateOfDeathDescription: TextView? = null
+    private var webViewDateOfDeath: WebView? = null
     private var textViewDateOfDeathCaption: TextView? = null
     private var toolbar: Toolbar? = null
 
@@ -31,7 +32,7 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        textViewDateOfDeathDescription = view.findViewById(R.id.textDateOfDeathDescription)
+        webViewDateOfDeath = view.findViewById(R.id.webViewDateOfDeath)
         textViewDateOfDeathCaption = view.findViewById(R.id.textDateOfDeathCaption)
 
         return view
@@ -45,27 +46,51 @@ class DetailsFragment : Fragment() {
         when (dayOfCommemoration.mapToDayOfCommemoration()) {
             DayOfCommemoration.THREE_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_3day_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.three_day_description)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.three_day_description),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
             DayOfCommemoration.NINE_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_9day_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.nine_day_description)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.nine_day_description),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
             DayOfCommemoration.FORTY_DAY -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_deatg_40day_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.forty_day_description)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.forty_day_description),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
             DayOfCommemoration.SIX_MONTH -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_6month_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.six_month_description)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.six_month_description),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
             DayOfCommemoration.ONE_YEAR -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_1year_caption)
-                textViewDateOfDeathDescription?.text = getString(R.string.one_year_description)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.one_year_description),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
             null -> {
                 textViewDateOfDeathCaption?.text = getString(R.string.error)
-                textViewDateOfDeathDescription?.text = getString(R.string.error)
+                webViewDateOfDeath?.loadData(
+                    getString(R.string.error),
+                    "text/html; charset=utf-8",
+                    "utf-8"
+                )
             }
         }
     }
