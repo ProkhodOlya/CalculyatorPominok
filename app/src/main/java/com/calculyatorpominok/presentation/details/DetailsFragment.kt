@@ -1,19 +1,17 @@
 package com.calculyatorpominok.presentation.details
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
-import androidx.appcompat.widget.Toolbar
 
 class DetailsFragment : Fragment() {
     private var webViewDateOfDeath: WebView? = null

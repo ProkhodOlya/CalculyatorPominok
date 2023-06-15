@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.calculyatorpominok.data.DateRepository
@@ -23,17 +22,7 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
     fun start() {
         val time =
             dateRepository.getSavedDate().let { if (it > 0) it else System.currentTimeMillis() }
-        val mainState = MainState(
-            dateOfDeath = getDate(time, DATE_FORMAT_DEATH),
-            threeDateOfDeath = calculateDate(time, THREE_DATE, Calendar.DAY_OF_MONTH),
-            nineDateOfDeath = calculateDate(time, NINE_DATE, Calendar.DAY_OF_MONTH),
-            fortyDateOfDeath = calculateDate(time, FORTY_DATE, Calendar.DAY_OF_MONTH),
-            sixMonthDateOfDeath = calculateDate(time, SIXMONTH_DATE, Calendar.MONTH),
-            oneYearDateOfDeath = calculateDate(time, ONEYEAR_DATE, Calendar.YEAR)
-        )
-        _state.update {
-            mainState
-        }
+        updateState(time)
     }
 
     private fun getDate(milliSeconds: Long, dateFormat: String?): String {
@@ -44,12 +33,31 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
         return formatter.format(calendar.time)
     }
 
+
     private fun calculateDate(selection: Long, amount: Int, calendarField: Int): String {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = selection
         calendar.add(calendarField, amount)
         val timeInMillis = calendar.timeInMillis
         return getDate(timeInMillis, DATE_FORMAT)
+    }
+
+    fun onSelectDate(selection: Long) {
+        dateRepository.setSavedDate(selection)
+        updateState(selection)
+    }
+
+    private fun updateState(selection: Long) {
+        _state.update { currentState ->
+            currentState.copy(
+                dateOfDeath = getDate(selection, DATE_FORMAT_DEATH),
+                threeDateOfDeath = calculateDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH),
+                nineDateOfDeath = calculateDate(selection, NINE_DATE, Calendar.DAY_OF_MONTH),
+                fortyDateOfDeath = calculateDate(selection, FORTY_DATE, Calendar.DAY_OF_MONTH),
+                sixMonthDateOfDeath = calculateDate(selection, SIXMONTH_DATE, Calendar.MONTH),
+                oneYearDateOfDeath = calculateDate(selection, ONEYEAR_DATE, Calendar.YEAR)
+            )
+        }
     }
 
     companion object {
