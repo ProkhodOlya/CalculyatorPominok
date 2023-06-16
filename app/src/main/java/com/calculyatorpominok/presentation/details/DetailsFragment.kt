@@ -8,15 +8,22 @@ import android.webkit.WebView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
+import com.calculyatorpominok.presentation.main.MainViewModel
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
+import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
     private var webViewDateOfDeath: WebView? = null
     private var textViewDateOfDeathCaption: TextView? = null
     private var toolbar: Toolbar? = null
+    private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,57 +47,22 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        subscribeToState()
         val dayOfCommemoration = arguments?.getInt(ARGS_DAY_OF_COMMEMORATION, -1) ?: -1
+        viewModel.start(dayOfCommemoration = dayOfCommemoration)
+    }
 
-        when (dayOfCommemoration.mapToDayOfCommemoration()) {
-            DayOfCommemoration.THREE_DAY -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_3day_caption)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.three_day_description),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
-            }
-            DayOfCommemoration.NINE_DAY -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_9day_caption)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.nine_day_description),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
-            }
-            DayOfCommemoration.FORTY_DAY -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.date_of_deatg_40day_caption)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.forty_day_description),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
-            }
-            DayOfCommemoration.SIX_MONTH -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_6month_caption)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.six_month_description),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
-            }
-            DayOfCommemoration.ONE_YEAR -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.date_of_death_1year_caption)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.one_year_description),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
-            }
-            null -> {
-                textViewDateOfDeathCaption?.text = getString(R.string.error)
-                webViewDateOfDeath?.loadData(
-                    getString(R.string.error),
-                    "text/html; charset=utf-8",
-                    "utf-8"
-                )
+    private fun subscribeToState() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { detailsState ->
+                    textViewDateOfDeathCaption?.text = detailsState.dayDateOfDeathCaption
+                    webViewDateOfDeath?.loadData(
+                        detailsState.detailsDateOfDeath,
+                        "text/html; charset=utf-8",
+                        "utf-8"
+                    )
+                }
             }
         }
     }
