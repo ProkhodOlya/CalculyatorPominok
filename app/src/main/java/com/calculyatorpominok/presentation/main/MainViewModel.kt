@@ -20,8 +20,13 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
     val state: StateFlow<MainState> = _state
 
     fun start() {
-        val time =
-            dateRepository.getSavedDate().let { if (it > 0) it else System.currentTimeMillis() }
+        val time = dateRepository.getSavedDate().let { savedDate ->
+            if (savedDate > 0) {
+                savedDate
+            } else {
+                System.currentTimeMillis()
+            }
+        }
         updateState(time)
     }
 
@@ -47,15 +52,15 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
         updateState(selection)
     }
 
-    private fun updateState(selection: Long) {
+    private fun updateState(time: Long) {
         _state.update { currentState ->
             currentState.copy(
-                dateOfDeath = getDate(selection, DATE_FORMAT_DEATH),
-                threeDateOfDeath = calculateDate(selection, THREE_DATE, Calendar.DAY_OF_MONTH),
-                nineDateOfDeath = calculateDate(selection, NINE_DATE, Calendar.DAY_OF_MONTH),
-                fortyDateOfDeath = calculateDate(selection, FORTY_DATE, Calendar.DAY_OF_MONTH),
-                sixMonthDateOfDeath = calculateDate(selection, SIXMONTH_DATE, Calendar.MONTH),
-                oneYearDateOfDeath = calculateDate(selection, ONEYEAR_DATE, Calendar.YEAR)
+                dateOfDeath = getDate(time, DATE_FORMAT_DEATH),
+                threeDateOfDeath = calculateDate(time, THREE_DATE, Calendar.DAY_OF_MONTH),
+                nineDateOfDeath = calculateDate(time, NINE_DATE, Calendar.DAY_OF_MONTH),
+                fortyDateOfDeath = calculateDate(time, FORTY_DATE, Calendar.DAY_OF_MONTH),
+                sixMonthDateOfDeath = calculateDate(time, SIXMONTH_DATE, Calendar.MONTH),
+                oneYearDateOfDeath = calculateDate(time, ONEYEAR_DATE, Calendar.YEAR)
             )
         }
     }

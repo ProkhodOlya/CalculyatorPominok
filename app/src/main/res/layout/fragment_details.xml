@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="?attr/android:colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -12,9 +12,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:background = "@color/primary"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/toolbar_main_fragment"
+            android:background="?attr/android:colorBackground"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:textColor="#000000"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="@string/date_of_death_3day_caption"
