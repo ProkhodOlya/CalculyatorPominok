@@ -16,6 +16,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
+import com.calculyatorpominok.presentation.screens.SettingsFragment
+import com.calculyatorpominok.presentation.screens.SettingsFragment.Companion.SETTINGS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
@@ -144,6 +146,11 @@ class MainFragment : Fragment() {
                     datePicker?.show(parentFragmentManager, "datePicker")
                     true
                 }
+                R.id.settings -> {
+                    // Navigate to settings screen.
+                    openSettings ()
+                    true
+                }
                 else -> false
             }
         }
@@ -174,6 +181,17 @@ class MainFragment : Fragment() {
             )
             .commit()
     }
+    private fun openSettings () {
+        val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+        val settingsFragment = SettingsFragment.newInstance()
+        fragmentTransaction.add(R.id.containerFragment, settingsFragment)
+            .addToBackStack(SETTINGS_FRAGMENT)
+            .setCustomAnimations(
+                android.R.animator.fade_in, android.R.animator.fade_out
+            )
+            .commit()
+    }
+
 
     companion object {
         const val MAIN_FRAGMENT = "mainFragment"

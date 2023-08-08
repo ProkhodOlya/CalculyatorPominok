@@ -9,5 +9,12 @@
         android:title="Дата смерти"
         android:contentDescription="null"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_action_name"
+        app:iconTint="?attr/colorPrimary"
+        android:title="Дата смерти"
+        android:contentDescription="null"
+        app:showAsAction="ifRoom" />
 
 </menu>
