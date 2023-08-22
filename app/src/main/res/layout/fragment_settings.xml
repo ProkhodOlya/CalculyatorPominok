@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/android:colorBackground"
-            app:menu="@menu/toolbar_main_fragment"
+            app:menu="@menu/toolbar_settings_fragment"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -57,7 +57,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_margin="4dp"
-                    android:checked="true"
                     android:layoutDirection="rtl"
                     android:text="Light theme"
                     android:textAlignment="textStart"

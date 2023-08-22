@@ -12,10 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.calculyatorpominok.mapper.mapToDayOfCommemoration
-import com.calculyatorpominok.presentation.main.MainViewModel
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
-import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import kotlinx.coroutines.launch
 
