@@ -33,56 +33,135 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp">
 
-            <RadioGroup
-                android:id="@+id/constraintRadioGroup"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_changeTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintBottom_toTopOf="@id/card_view_language"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/textViewTheme"
+                <RadioGroup
+                    android:id="@+id/constraintRadioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="4dp"
-                    android:text="Change theme"
-                    android:textSize="14sp" />
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/radioButtonLightTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="4dp"
-                    android:layoutDirection="rtl"
-                    android:text="Light theme"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textViewTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="4dp"
+                        android:text="Change theme"
+                        android:textSize="14sp" />
 
-                <RadioButton
-                    android:id="@+id/radioButtonDarkTheme"
+                    <RadioButton
+                        android:id="@+id/radioButtonLightTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="Light theme"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonDarkTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="Dark theme"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonAutoTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="Auto"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_changeTheme">
+
+                <RadioGroup
+                    android:id="@+id/constraintRadioGroupLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="4dp"
-                    android:layoutDirection="rtl"
-                    android:text="Dark theme"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-                <RadioButton
-                    android:id="@+id/radioButtonAutoTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="4dp"
-                    android:layoutDirection="rtl"
-                    android:text="Auto"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-            </RadioGroup>
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textViewLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="4dp"
+                        android:text="Change language"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonRussian"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="Russian"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonEnglish"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="English"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonAutoLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_margin="4dp"
+                        android:layoutDirection="rtl"
+                        android:text="Auto language"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

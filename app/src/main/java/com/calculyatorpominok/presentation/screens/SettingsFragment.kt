@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.example.calculyatorpominok.R
 import kotlinx.coroutines.launch
@@ -27,6 +28,10 @@ class SettingsFragment : Fragment() {
     private var radioButtonLightTheme: RadioButton? = null
     private var radioButtonDarkTheme: RadioButton? = null
     private var radioButtonAutoTheme: RadioButton? = null
+    private var radioGroupLanguage: RadioGroup? = null
+    private var radioButtonRussian: RadioButton? = null
+    private var radioButtonEnglish: RadioButton? = null
+    private var radioButtonAutoLanguage: RadioButton? = null
     private val viewModel: SettingsViewModel by viewModels { SettingsViewModel.Factory }
 
     override fun onCreateView(
@@ -40,6 +45,10 @@ class SettingsFragment : Fragment() {
         radioButtonLightTheme = view.findViewById(R.id.radioButtonLightTheme)
         radioButtonDarkTheme = view.findViewById(R.id.radioButtonDarkTheme)
         radioButtonAutoTheme = view.findViewById(R.id.radioButtonAutoTheme)
+        radioGroupLanguage = view.findViewById(R.id.constraintRadioGroupLanguage)
+        radioButtonRussian = view.findViewById(R.id.radioButtonRussian)
+        radioButtonEnglish = view.findViewById(R.id.radioButtonEnglish)
+        radioButtonAutoLanguage = view.findViewById(R.id.radioButtonAutoLanguage)
         toolbar = view.findViewById<Toolbar?>(R.id.toolbar).apply {
             setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
             setNavigationOnClickListener {
@@ -55,7 +64,6 @@ class SettingsFragment : Fragment() {
         viewModel.start()
         initView()
     }
-
 
     private fun initView() {
         radioGroupTheme?.setOnCheckedChangeListener(object : OnCheckedChangeListener {
@@ -76,6 +84,24 @@ class SettingsFragment : Fragment() {
                 }
             }
         })
+        radioGroupLanguage?.setOnCheckedChangeListener(object : OnCheckedChangeListener {
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                when (checkedId) {
+                    R.id.radioButtonRussian -> {
+                        viewModel.saveLanguage(TypeOfLanguage.RUSSIAN)
+
+                    }
+                    R.id.radioButtonEnglish -> {
+                        viewModel.saveLanguage(TypeOfLanguage.ENGLISH)
+
+                    }
+                    R.id.radioButtonAutoLanguage -> {
+                        viewModel.saveLanguage(TypeOfLanguage.AUTO)
+
+                    }
+                }
+            }
+        })
     }
 
     private fun subscribeToState() {
@@ -86,6 +112,11 @@ class SettingsFragment : Fragment() {
                         TypeOfTheme.DARK -> radioButtonDarkTheme?.isChecked = true
                         TypeOfTheme.LIGHT -> radioButtonLightTheme?.isChecked = true
                         TypeOfTheme.AUTO -> radioButtonAutoTheme?.isChecked = true
+                    }
+                    when (state.typeOfLanguage) {
+                        TypeOfLanguage.AUTO -> radioButtonAutoLanguage?.isChecked = true
+                        TypeOfLanguage.ENGLISH -> radioButtonEnglish?.isChecked = true
+                        TypeOfLanguage.RUSSIAN -> radioButtonRussian?.isChecked = true
                     }
                 }
             }

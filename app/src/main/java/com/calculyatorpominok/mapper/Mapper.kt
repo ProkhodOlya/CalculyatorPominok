@@ -1,5 +1,6 @@
 package com.calculyatorpominok.mapper
 
+import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.calculyatorpominok.utils.DayOfCommemoration
 
@@ -19,4 +20,12 @@ fun Int.mapToTypeOfTheme(): TypeOfTheme =
         TypeOfTheme.DARK.value -> TypeOfTheme.DARK
         TypeOfTheme.LIGHT.value -> TypeOfTheme.LIGHT
         else -> TypeOfTheme.AUTO
+    }
+
+fun Int.mapToLanguage(): TypeOfLanguage =
+    when (this) {
+        TypeOfLanguage.AUTO.value -> TypeOfLanguage.AUTO
+        TypeOfLanguage.RUSSIAN.value -> TypeOfLanguage.RUSSIAN
+        TypeOfLanguage.ENGLISH.value -> TypeOfLanguage.ENGLISH
+        else -> TypeOfLanguage.AUTO
     }
