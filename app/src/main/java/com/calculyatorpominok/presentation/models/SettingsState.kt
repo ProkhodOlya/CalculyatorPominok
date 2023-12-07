@@ -9,6 +9,6 @@ enum class TypeOfTheme(val value: Int) {
 }
 enum class TypeOfLanguage(val value: String) {
     AUTO(""),
-    RUSSIAN("ru"),
-    ENGLISH("en"),
+    RUSSIAN("ru-RU"),
+    ENGLISH("en-EN"),
 }

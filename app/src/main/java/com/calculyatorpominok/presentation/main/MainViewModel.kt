@@ -1,6 +1,8 @@
 package com.calculyatorpominok.presentation.main
 
 import android.app.Application
+import android.content.Context
+import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -13,6 +15,7 @@ import java.util.Calendar
 import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
 import kotlinx.coroutines.flow.update
 
 class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
@@ -37,7 +40,6 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
         calendar.timeInMillis = milliSeconds
         return formatter.format(calendar.time)
     }
-
 
     private fun calculateDate(selection: Long, amount: Int, calendarField: Int): String {
         val calendar = Calendar.getInstance()

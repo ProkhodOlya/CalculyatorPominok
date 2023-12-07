@@ -8,8 +8,10 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
+//import androidx.appcompat.widget.Toolbar
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +20,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.example.calculyatorpominok.R
+import java.util.Locale
 import kotlinx.coroutines.launch
 
 
@@ -73,10 +76,12 @@ class SettingsFragment : Fragment() {
                         viewModel.saveTheme(TypeOfTheme.LIGHT)
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     }
+
                     R.id.radioButtonDarkTheme -> {
                         viewModel.saveTheme(TypeOfTheme.DARK)
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
+
                     R.id.radioButtonAutoTheme -> {
                         viewModel.saveTheme(TypeOfTheme.DARK)
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
@@ -89,15 +94,16 @@ class SettingsFragment : Fragment() {
                 when (checkedId) {
                     R.id.radioButtonRussian -> {
                         viewModel.saveLanguage(TypeOfLanguage.RUSSIAN)
-
+                        setLocale(TypeOfLanguage.RUSSIAN)
                     }
+
                     R.id.radioButtonEnglish -> {
                         viewModel.saveLanguage(TypeOfLanguage.ENGLISH)
-
+                        setLocale(TypeOfLanguage.ENGLISH)
                     }
+
                     R.id.radioButtonAutoLanguage -> {
                         viewModel.saveLanguage(TypeOfLanguage.AUTO)
-
                     }
                 }
             }
@@ -121,6 +127,16 @@ class SettingsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setLocale(typeOfLanguage: TypeOfLanguage) {
+        val appLocale = LocaleListCompat.forLanguageTags(typeOfLanguage.value) // or use "xx-YY"
+        AppCompatDelegate.setApplicationLocales(appLocale)
+//        val config = resources.configuration
+//        val locale = Locale(typeOfLanguage.value)
+//        Locale.setDefault(locale)
+//        config.setLocale(locale)
+//        requireContext().createConfigurationContext(config)
     }
 
     companion object {
