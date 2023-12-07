@@ -3,20 +3,21 @@ package com.calculyatorpominok.data
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.calculyatorpominok.presentation.models.TypeOfLanguage
 
 
 class LanguageRepository private constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("config-pref-theme", MODE_PRIVATE)
+        context.getSharedPreferences("config-pref-language", MODE_PRIVATE)
 
-    fun setLanguage(language: Int) {
+    fun setLanguage(language: String) {
         val sharedPrefEditor = sharedPreferences.edit()
-        sharedPrefEditor?.putInt(SAVED_LANGUAGE, language)
+        sharedPrefEditor?.putString(SAVED_LANGUAGE, language)
         sharedPrefEditor?.apply()
     }
 
-    fun getLanguage(): Int {
-        return sharedPreferences.getInt(SAVED_LANGUAGE, -1)
+    fun getLanguage(): String {
+        return sharedPreferences.getString(SAVED_LANGUAGE, "") ?: TypeOfLanguage.AUTO.value
     }
 
     companion object {

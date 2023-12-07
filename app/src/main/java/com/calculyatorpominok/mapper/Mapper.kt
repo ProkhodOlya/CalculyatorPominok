@@ -22,7 +22,7 @@ fun Int.mapToTypeOfTheme(): TypeOfTheme =
         else -> TypeOfTheme.AUTO
     }
 
-fun Int.mapToLanguage(): TypeOfLanguage =
+fun String.mapToLanguage(): TypeOfLanguage =
     when (this) {
         TypeOfLanguage.AUTO.value -> TypeOfLanguage.AUTO
         TypeOfLanguage.RUSSIAN.value -> TypeOfLanguage.RUSSIAN

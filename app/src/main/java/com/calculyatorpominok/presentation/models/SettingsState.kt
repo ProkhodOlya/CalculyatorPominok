@@ -7,8 +7,8 @@ enum class TypeOfTheme(val value: Int) {
     DARK(1),
     LIGHT(2),
 }
-enum class TypeOfLanguage(val value: Int) {
-    AUTO(0),
-    RUSSIAN(1),
-    ENGLISH(2),
+enum class TypeOfLanguage(val value: String) {
+    AUTO(""),
+    RUSSIAN("ru"),
+    ENGLISH("en"),
 }
