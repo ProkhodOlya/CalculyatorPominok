@@ -15,7 +15,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/android:colorBackground"
             app:menu="@menu/toolbar_settings_fragment"
-            app:title="@string/app_name" />
+            app:title="@string/settings" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Change theme"
+                        android:text="@string/change_theme"
                         android:textSize="14sp" />
 
                     <RadioButton
@@ -70,7 +70,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="Light theme"
+                        android:text="@string/light_theme"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
 
@@ -81,7 +81,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="Dark theme"
+                        android:text="@string/dark_theme"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
 
@@ -92,7 +92,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="Auto"
+                        android:text="@string/auto_theme"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
                 </RadioGroup>
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        android:text="Change language"
+                        android:text="@string/change_language"
                         android:textSize="14sp" />
 
                     <RadioButton
@@ -135,7 +135,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="Russian"
+                        android:text="@string/russian"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
 
@@ -146,7 +146,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="English"
+                        android:text="@string/english"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
 
@@ -157,7 +157,7 @@
                         android:layout_gravity="start"
                         android:layout_margin="4dp"
                         android:layoutDirection="rtl"
-                        android:text="Auto language"
+                        android:text="@string/auto_language"
                         android:textAlignment="textStart"
                         android:textSize="14sp" />
                 </RadioGroup>
