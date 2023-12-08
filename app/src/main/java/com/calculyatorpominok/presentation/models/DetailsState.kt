@@ -1,6 +1,8 @@
 package com.calculyatorpominok.presentation.models
 
+import androidx.annotation.StringRes
+
 data class DetailsState (
-    val dayDateOfDeathCaption: String = "",
-    val detailsDateOfDeath: String = "",
+    @StringRes val dayDateOfDeathCaption: Int,
+    @StringRes val detailsDateOfDeath: Int,
     )

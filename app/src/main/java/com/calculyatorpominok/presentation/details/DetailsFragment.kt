@@ -53,9 +53,9 @@ class DetailsFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { detailsState ->
-                    textViewDateOfDeathCaption?.text = detailsState.dayDateOfDeathCaption
+                    textViewDateOfDeathCaption?.text = getString(detailsState.dayDateOfDeathCaption)
                     webViewDateOfDeath?.loadData(
-                        detailsState.detailsDateOfDeath,
+                        getString(detailsState.detailsDateOfDeath),
                         "text/html; charset=utf-8",
                         "utf-8"
                     )
