@@ -1,5 +1,7 @@
 package com.calculyatorpominok.presentation.main
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +25,11 @@ import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlinx.coroutines.launch
+
 
 class MainFragment : Fragment() {
     private var textViewDateOfDeath: TextView? = null
@@ -160,12 +166,12 @@ class MainFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { mainState ->
-                    textViewDateOfDeath?.text = mainState.dateOfDeath
-                    textViewDateOfDeathThree?.text = mainState.threeDateOfDeath
-                    textViewDateOfDeathNine?.text = mainState.nineDateOfDeath
-                    textViewDateOfDeathForty?.text = mainState.fortyDateOfDeath
-                    textViewDateOfDeathSixMonth?.text = mainState.sixMonthDateOfDeath
-                    textViewDateOfDeathOneYear?.text = mainState.oneYearDateOfDeath
+                    textViewDateOfDeath?.text = getDate(mainState.dateOfDeath, DATE_FORMAT_DEATH)
+                    textViewDateOfDeathThree?.text = getDate(mainState.threeDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathNine?.text = getDate(mainState.nineDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathForty?.text = getDate(mainState.fortyDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathSixMonth?.text = getDate(mainState.sixMonthDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathOneYear?.text = getDate(mainState.oneYearDateOfDeath, DATE_FORMAT)
                 }
             }
         }
@@ -191,10 +197,26 @@ class MainFragment : Fragment() {
             )
             .commit()
     }
+    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
+        //TODO лучше не использовать Locale.getDefault() - медленно работает
+        val formatter = SimpleDateFormat(dateFormat, getCurrentLocale(requireContext()))
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = milliSeconds
+        return formatter.format(calendar.time)
+    }
 
+    fun getCurrentLocale(context: Context): Locale? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.resources.configuration.locales[0]
+        } else {
+            context.resources.configuration.locale
+        }
+    }
 
     companion object {
         const val MAIN_FRAGMENT = "mainFragment"
+        private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
+        private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
 
         fun newInstance() = MainFragment()
     }

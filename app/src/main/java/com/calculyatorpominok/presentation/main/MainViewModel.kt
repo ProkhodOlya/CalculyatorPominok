@@ -33,20 +33,20 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
         updateState(time)
     }
 
-    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
-        //TODO лучше не использовать Locale.getDefault() - медленно работает
-        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.timeInMillis = milliSeconds
-        return formatter.format(calendar.time)
-    }
+//    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
+//        //TODO лучше не использовать Locale.getDefault() - медленно работает
+//        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
+//        val calendar: Calendar = Calendar.getInstance()
+//        calendar.timeInMillis = milliSeconds
+//        return formatter.format(calendar.time)
+//    }
 
-    private fun calculateDate(selection: Long, amount: Int, calendarField: Int): String {
+    private fun calculateDate(selection: Long, amount: Int, calendarField: Int): Long {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = selection
         calendar.add(calendarField, amount)
-        val timeInMillis = calendar.timeInMillis
-        return getDate(timeInMillis, DATE_FORMAT)
+        return calendar.timeInMillis
+//        return getDate(timeInMillis, DATE_FORMAT)
     }
 
     fun onSelectDate(selection: Long) {
@@ -57,7 +57,7 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
     private fun updateState(time: Long) {
         _state.update { currentState ->
             currentState.copy(
-                dateOfDeath = getDate(time, DATE_FORMAT_DEATH),
+                dateOfDeath = calculateDate(time, 0, Calendar.DAY_OF_MONTH),
                 threeDateOfDeath = calculateDate(time, THREE_DATE, Calendar.DAY_OF_MONTH),
                 nineDateOfDeath = calculateDate(time, NINE_DATE, Calendar.DAY_OF_MONTH),
                 fortyDateOfDeath = calculateDate(time, FORTY_DATE, Calendar.DAY_OF_MONTH),

@@ -96,12 +96,10 @@ class SettingsFragment : Fragment() {
                         viewModel.saveLanguage(TypeOfLanguage.RUSSIAN)
                         setLocale(TypeOfLanguage.RUSSIAN)
                     }
-
                     R.id.radioButtonEnglish -> {
                         viewModel.saveLanguage(TypeOfLanguage.ENGLISH)
                         setLocale(TypeOfLanguage.ENGLISH)
                     }
-
                     R.id.radioButtonAutoLanguage -> {
                         viewModel.saveLanguage(TypeOfLanguage.AUTO)
                     }
