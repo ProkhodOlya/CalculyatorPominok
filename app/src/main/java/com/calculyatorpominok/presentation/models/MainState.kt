@@ -7,4 +7,6 @@ data class MainState(
     val fortyDateOfDeath: Long = 0,
     val sixMonthDateOfDeath: Long = 0,
     val oneYearDateOfDeath: Long = 0,
+    val typeOfTheme: TypeOfTheme,
+    val typeOfLanguage: TypeOfLanguage
 )

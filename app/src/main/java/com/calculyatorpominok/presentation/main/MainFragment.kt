@@ -1,6 +1,7 @@
 package com.calculyatorpominok.presentation.main
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -18,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
+import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.calculyatorpominok.presentation.screens.SettingsFragment
 import com.calculyatorpominok.presentation.screens.SettingsFragment.Companion.SETTINGS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
@@ -46,6 +49,7 @@ class MainFragment : Fragment() {
     private var button: Button? = null
     private var datePicker: MaterialDatePicker<Long>? = null
     private var toolbar: Toolbar? = null
+    private var constraintDateOfDeath: ConstraintLayout? = null
     private var constraintDetailsThreeDay: ConstraintLayout? = null
     private var constraintDetailsNineDay: ConstraintLayout? = null
     private var constraintDetailsFortyDay: ConstraintLayout? = null
@@ -70,6 +74,7 @@ class MainFragment : Fragment() {
         textViewDateOfDeathSixMonthDetails = view.findViewById(R.id.textDateOfDeathSixMonthsDetails)
         textViewDateOfDeathOneYear = view.findViewById(R.id.textDateOfDeathOneYear)
         textViewDateOfDeathOneYearDetails = view.findViewById(R.id.textDateOfDeathOneYearDetails)
+        constraintDateOfDeath = view.findViewById(R.id.constraintDateOfDeath)
         constraintDetailsThreeDay = view.findViewById(R.id.constraintDateOfDeathThree)
         constraintDetailsNineDay = view.findViewById(R.id.constraintDateOfDeathNine)
         constraintDetailsFortyDay = view.findViewById(R.id.constraintDateOfDeathForty)
@@ -92,6 +97,7 @@ class MainFragment : Fragment() {
         initToolbar()
         initDatePicker()
         button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
+        constraintDateOfDeath?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {
             openDetails(DayOfCommemoration.THREE_DAY)
@@ -172,6 +178,19 @@ class MainFragment : Fragment() {
                     textViewDateOfDeathForty?.text = getDate(mainState.fortyDateOfDeath, DATE_FORMAT)
                     textViewDateOfDeathSixMonth?.text = getDate(mainState.sixMonthDateOfDeath, DATE_FORMAT)
                     textViewDateOfDeathOneYear?.text = getDate(mainState.oneYearDateOfDeath, DATE_FORMAT)
+                    when (mainState.typeOfTheme) {
+                        TypeOfTheme.AUTO -> AppCompatDelegate.setDefaultNightMode(
+                            if (resources.configuration.uiMode and
+                                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+                            ) {
+                                AppCompatDelegate.MODE_NIGHT_YES
+                            } else {
+                                AppCompatDelegate.MODE_NIGHT_NO
+                            }
+                        )
+                        TypeOfTheme.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        TypeOfTheme.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
                 }
             }
         }

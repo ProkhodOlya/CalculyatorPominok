@@ -1,25 +1,35 @@
 package com.calculyatorpominok.presentation.main
 
 import android.app.Application
-import android.content.Context
-import android.os.Build
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.calculyatorpominok.data.DateRepository
+import com.calculyatorpominok.data.LanguageRepository
+import com.calculyatorpominok.data.ThemeRepository
+import com.calculyatorpominok.mapper.mapToLanguage
+import com.calculyatorpominok.mapper.mapToTypeOfTheme
 import com.calculyatorpominok.presentation.models.MainState
-import java.text.SimpleDateFormat
+import com.calculyatorpominok.presentation.models.TypeOfLanguage
+import com.calculyatorpominok.presentation.models.TypeOfTheme
 import java.util.Calendar
-import java.util.Locale
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-//import kotlinx.coroutines.flow.internal.NoOpContinuation.context
 import kotlinx.coroutines.flow.update
 
-class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
-    private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState())
+class MainViewModel(
+    private val dateRepository: DateRepository,
+    private val themeRepository: ThemeRepository,
+    private val languageRepository: LanguageRepository
+) : ViewModel() {
+    private val _state: MutableStateFlow<MainState> = MutableStateFlow(
+        MainState(
+            typeOfTheme = TypeOfTheme.AUTO,
+            typeOfLanguage = TypeOfLanguage.AUTO
+        )
+    )
     val state: StateFlow<MainState> = _state
 
     fun start() {
@@ -30,16 +40,10 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
                 System.currentTimeMillis()
             }
         }
-        updateState(time)
+        val theme = themeRepository.getTheme().mapToTypeOfTheme()
+        val language = languageRepository.getLanguage().mapToLanguage()
+        updateState(time, typeOfTheme = theme, typeOfLanguage = language)
     }
-
-//    private fun getDate(milliSeconds: Long, dateFormat: String?): String {
-//        //TODO лучше не использовать Locale.getDefault() - медленно работает
-//        val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
-//        val calendar: Calendar = Calendar.getInstance()
-//        calendar.timeInMillis = milliSeconds
-//        return formatter.format(calendar.time)
-//    }
 
     private fun calculateDate(selection: Long, amount: Int, calendarField: Int): Long {
         val calendar = Calendar.getInstance()
@@ -51,10 +55,10 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
 
     fun onSelectDate(selection: Long) {
         dateRepository.setSavedDate(selection)
-        updateState(selection)
+        updateState(selection,  typeOfTheme = _state.value.typeOfTheme, typeOfLanguage = _state.value.typeOfLanguage)
     }
 
-    private fun updateState(time: Long) {
+    private fun updateState(time: Long, typeOfTheme: TypeOfTheme, typeOfLanguage: TypeOfLanguage) {
         _state.update { currentState ->
             currentState.copy(
                 dateOfDeath = calculateDate(time, 0, Calendar.DAY_OF_MONTH),
@@ -62,14 +66,14 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
                 nineDateOfDeath = calculateDate(time, NINE_DATE, Calendar.DAY_OF_MONTH),
                 fortyDateOfDeath = calculateDate(time, FORTY_DATE, Calendar.DAY_OF_MONTH),
                 sixMonthDateOfDeath = calculateDate(time, SIXMONTH_DATE, Calendar.MONTH),
-                oneYearDateOfDeath = calculateDate(time, ONEYEAR_DATE, Calendar.YEAR)
+                oneYearDateOfDeath = calculateDate(time, ONEYEAR_DATE, Calendar.YEAR),
+                typeOfTheme = typeOfTheme,
+                typeOfLanguage = typeOfLanguage
             )
         }
     }
 
     companion object {
-        private const val DATE_FORMAT_DEATH = "dd MMMM yyyy"
-        private const val DATE_FORMAT = "dd.MM.yyyy, EEEE"
         private const val THREE_DATE = 3 - 1
         private const val NINE_DATE = 9 - 1
         private const val FORTY_DATE = 40 - 1
@@ -79,8 +83,14 @@ class MainViewModel(private val dateRepository: DateRepository) : ViewModel() {
             initializer {
                 val dateRepository =
                     DateRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+                val themeRepository =
+                    ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+                val languageRepository =
+                    LanguageRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
                 MainViewModel(
-                    dateRepository = dateRepository
+                    dateRepository = dateRepository,
+                    themeRepository = themeRepository,
+                    languageRepository = languageRepository
                 )
             }
         }

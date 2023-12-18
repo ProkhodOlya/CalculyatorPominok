@@ -1,5 +1,7 @@
 package com.calculyatorpominok.presentation.screens
 
+import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.TextView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatDelegate
-//import androidx.appcompat.widget.Toolbar
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -83,8 +84,16 @@ class SettingsFragment : Fragment() {
                     }
 
                     R.id.radioButtonAutoTheme -> {
-                        viewModel.saveTheme(TypeOfTheme.DARK)
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.getDefaultNightMode())
+                        viewModel.saveTheme(TypeOfTheme.AUTO)
+                        AppCompatDelegate.setDefaultNightMode(
+                            if (resources.configuration.uiMode and
+                                Configuration.UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
+                            ) {
+                                AppCompatDelegate.MODE_NIGHT_YES
+                            } else {
+                                AppCompatDelegate.MODE_NIGHT_NO
+                            }
+                        )
                     }
                 }
             }
@@ -96,10 +105,12 @@ class SettingsFragment : Fragment() {
                         viewModel.saveLanguage(TypeOfLanguage.RUSSIAN)
                         setLocale(TypeOfLanguage.RUSSIAN)
                     }
+
                     R.id.radioButtonEnglish -> {
                         viewModel.saveLanguage(TypeOfLanguage.ENGLISH)
                         setLocale(TypeOfLanguage.ENGLISH)
                     }
+
                     R.id.radioButtonAutoLanguage -> {
                         viewModel.saveLanguage(TypeOfLanguage.AUTO)
                     }
