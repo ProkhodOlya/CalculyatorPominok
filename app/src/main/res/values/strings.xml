@@ -12,38 +12,41 @@
     <string name="choose_date">Choose date of death</string>
     <string name="three_day_description">
         <![CDATA[
-    <html>
-	<body style="text-align:justify">The wake after the funeral on the third day is
+     <html>
+	    <body style="text-align:justify">
+	        <p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The wake after the funeral on the third day is
          traditionally associated with the miraculous resurrection of Jesus Christ and the image
          of the Blessed Trinity. During the first two days after  the soul stays on earth near
-         relatives and visits places that were dear to it when it was alive. И  Only on the third day
+         relatives and visits places that were dear to it when it was alive. Only on the third day
          does it ascend to heaven, where it appears before God. On that day, the family  On this day,
          a memorial table is laid for her. This takes place immediately or some time after  The
          funeral or civil funeral service and the funeral are over. The meal is held leisurely, with
          each  come and say something good about the deceased, to express their grief. The place for
          the funeral may be the home of the deceased, as well as a cafe, restaurant, banquet hall,
          specially rented for this ceremony. However, there are several rules which should be  to
-         adhere to:
-         <ol>
-			<li>Anyone who wants to see the deceased off to his last journey can come to the dinner.</li>
-         <li>Before the meal, the Lord\'s Prayer is recited.</li>
-         <li>If a clergyman is present at the meal, he conducts the liturgy for the funeral and
+         adhere to:</p>
+            <ol>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anyone who wants to see the deceased off to his last journey can come to the dinner.</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Before the meal, the Lord\'s Prayer is recited.</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If a clergyman is present at the meal, he conducts the liturgy for the funeral and
          blesses the meal.</li>
-         <li>All those present are seated at the table in separate seats.</li>
-         <li>The first course is served with kutya, which was blessed in the temple during the
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All those present are seated at the table in separate seats.</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first course is served with kutya, which was blessed in the temple during the
          funeral service.</li>
-        <li>Before the sweet is served, those present sing a verse for voice.</li>
-         <li>The meal concludes with the reception of the last meal and the funeral bowl, as well
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Before the sweet is served, those present sing a verse for voice.</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The meal concludes with the reception of the last meal and the funeral bowl, as well
          as the offering of thanksgiving.</string></li>
-         </ol>
+            </ol>
 	</body>
 </html>
 ]]></string>
     <string name="nine_day_description">
     <![CDATA[
     <html>
-	<body style="text-align:justify">
-	Nine days are counted from the day of a person\'s death.
+	    <body style="text-align:justify">
+	        <p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nine days are counted from the day of a person\'s death.
          According to tradition on this day only family and friends come to remember the deceased.
          In a small family circle orthodox remember the best deeds of the deceased and read
          prayers. They also visit the cemetery, ennoble the grave, bring new flowers. A wake on
@@ -53,14 +56,15 @@
          Paradise. On this day, according to the Orthodox canons, it is not  is not obligatory.
          Relatives can simply gather at the grave and pray for the deceased. If it is decided it
          has been decided to lay the table, then strangers are not invited to the wake. And all
-         the leftover food should be distributed to the needy and the poor.
-         </body>
-</html>
+         the leftover food should be distributed to the needy and the poor.</p>
+        </body>
+    </html>
 ]]></string>
     <string name="forty_day_description"><![CDATA[
     <html>
-	<body style="text-align:justify">
-	On the fortieth day the soul of the departed returns to the
+	    <body style="text-align:justify">
+	        <p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On the fortieth day the soul of the departed returns to the
          soul of the deceased returns to its home, only to leave it forever after twenty-four
          hours to appear before God, who will make the final decision about her fate. Between the
          9th and 40th day she is in Hell, where she watches the sufferers of sinners. According to
@@ -69,26 +73,28 @@
          sufferings and to make amends for his sins on this day, the Fortieth Day is arranged.
          Relatives, friends and acquaintances gather to remember the deceased, talk about him and
          his life, pray for him. But to help a near and dear person who has passed into the other
-         world, one can only clearly adhere to established rules:
+         world, one can only clearly adhere to established rules:</p>
          <ol>
-			<li>On this day it is necessary to order a prayer service, which is accepted to serve for the
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On this day it is necessary to order a prayer service, which is accepted to serve for the
          deceased for 40 days - a forty-day vigil. All relatives and friends should also pray for
          the soul of the deceased.</li>
-        <li>Do not turn the memorial dinner into a feast and engage in idle conversation.</li>
-         <li>According to Orthodox traditions, at the wake it is forbidden to drink alcohol, sing and to
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do not turn the memorial dinner into a feast and engage in idle conversation.</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;According to Orthodox traditions, at the wake it is forbidden to drink alcohol, sing and to
          have fun. For those who want to support the soul of a loved one, clergymen recommend at
          least for one day Sacrifice oneself, giving up any bad habits, for example, gluttony,
          smoking.</li>
-         </ol>
-         The memorial table for 40 days is laid the same way as during the wake after the funeral.
-         Kutya, pancakes and compote are obligatory. You can diversify the meal and other dishes.</body>
-</html>
+            </ol>
+         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The memorial table for 40 days is laid the same way as during the wake after the funeral.
+         Kutya, pancakes and compote are obligatory. You can diversify the meal and other dishes.</p>
+         </body>
+    </html>
 ]]>
     </string>
     <string name="six_month_description"><![CDATA[
     <html>
-	<body style="text-align:justify">
-	After a person passes away, the first six-month period is
+	    <body style="text-align:justify">
+	        <p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After a person passes away, the first six-month period is
          quite difficult for relatives. This is the time to come to terms with the loss and
          continue living, but in another way. A great comfort is given by memories of the deceased
          and frequent prayers for his soul.A wake in six months after death is not necessary in
@@ -113,15 +119,16 @@
          mainly on the presence of other dishes depends mainly on the time of year and whether or
          not there is a fast at that time. Local traditions also influence. It can be vegetable
          salads, noodle soup, meat and fish dishes, pancakes, kissel. The main point of a wake is
-         to remember the deceased and to pray for him or her together.
-         </body>
-</html>
+         to remember the deceased and to pray for him or her together.</p>
+        </body>
+    </html>
 ]]>
     </string>
     <string name="one_year_description"><![CDATA[
     <html>
-	<body style="text-align:justify">
-	The first anniversary of a death is an extremely significant
+	    <body style="text-align:justify">
+	        <p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first anniversary of a death is an extremely significant
          event for all relatives, relatives, and friends of the deceased. On such a date it is
          customary to gather together and share good memories of the deceased, while supporting
          each other. It is important to understand that the first 12 months are essentially
@@ -129,19 +136,22 @@
          There are no precise rules and procedures for memorial services, so it is up to the
          relatives decide how and where to celebrate the event. There are also no restrictions on
          guests, as it is possible to invite any person whom the relatives think is necessary and
-         significant at the event.
-         Particular attention should be paid to the organizational arrangements. First of all, it
+         significant at the event.</p>
+         <p>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Particular attention should be paid to the organizational arrangements. First of all, it
          is necessary to determine the place of the wake. It can be an apartment, a private house
          or a cafe or restaurant, depending on depending on the number of people invited and the
          wishes of close relatives. Often the venue for the wake of the deceased is where he
          preferred to be most often. Such a place can be a dacha, a country house, a mountain, a
-         forest, a lake or a river.
-         Having met, people share pleasant moments and memories of the deceased. It should be
+         forest, a lake or a river.</p>
+         <p>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Having met, people share pleasant moments and memories of the deceased. It should be
          noted that invite only those people with whom relatives will really enjoy to communicate.
          That is those people who really loved and respected the deceased, treated to him well,
          were friends, relatives and good colleagues.
-         </body>
-</html>
+         </p>
+        </body>
+    </html>
 ]]>
     </string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -44,10 +44,25 @@
                 android:textSize="26sp"
                 android:textStyle="bold"
                 tools:text="@string/date_of_death_3day_caption"
-                app:layout_constraintBottom_toTopOf="@id/webViewDateOfDeath"
+                app:layout_constraintBottom_toTopOf="@id/textViewDateOfDeath"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:id="@+id/textViewDateOfDeath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="left"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="14sp"
+                tools:text="@string/three_day_description"
+                app:layout_constraintBottom_toTopOf="@+id/webViewDateOfDeath"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathCaption"
                 />
             <WebView
                 android:layout_width="match_parent"
@@ -58,7 +73,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathCaption"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDateOfDeath"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
