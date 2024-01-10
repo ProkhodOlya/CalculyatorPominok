@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 class DetailsViewModel() : ViewModel() {
-    private val _state: MutableStateFlow<DetailsState> = MutableStateFlow(DetailsState(0, 0, 0))
+    private val _state: MutableStateFlow<DetailsState> = MutableStateFlow(DetailsState(0, 0))
     val state: StateFlow<DetailsState> = _state
 
     fun start(dayOfCommemoration: Int) {
@@ -27,7 +27,6 @@ class DetailsViewModel() : ViewModel() {
             DayOfCommemoration.THREE_DAY -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.date_of_death_3day_caption,
-                    detailsDateOfDeath = R.string.three_day_description,
                     detailsDateOfDeathDescription = R.string.three_day_description,
                 )
             }
@@ -35,7 +34,6 @@ class DetailsViewModel() : ViewModel() {
             DayOfCommemoration.NINE_DAY -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.date_of_death_9day_caption,
-                    detailsDateOfDeath = R.string.nine_day_description,
                     detailsDateOfDeathDescription = R.string.three_day_description,
                 )
             }
@@ -43,7 +41,6 @@ class DetailsViewModel() : ViewModel() {
             DayOfCommemoration.FORTY_DAY -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.date_of_deatg_40day_caption,
-                    detailsDateOfDeath = R.string.forty_day_description,
                     detailsDateOfDeathDescription = R.string.three_day_description,
                 )
             }
@@ -51,7 +48,6 @@ class DetailsViewModel() : ViewModel() {
             DayOfCommemoration.SIX_MONTH -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.date_of_death_6month_caption,
-                    detailsDateOfDeath = R.string.six_month_description,
                     detailsDateOfDeathDescription = R.string.three_day_description,
                 )
             }
@@ -59,7 +55,6 @@ class DetailsViewModel() : ViewModel() {
             DayOfCommemoration.ONE_YEAR -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.date_of_death_1year_caption,
-                    detailsDateOfDeath = R.string.one_year_description,
                     detailsDateOfDeathDescription = R.string.three_day_description,
                 )
             }
@@ -67,7 +62,6 @@ class DetailsViewModel() : ViewModel() {
             null -> {
                 DetailsState(
                     dayDateOfDeathCaption = R.string.error,
-                    detailsDateOfDeath = R.string.error,
                     detailsDateOfDeathDescription = R.string.error,
                 )
             }

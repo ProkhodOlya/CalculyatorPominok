@@ -20,7 +20,6 @@ import com.example.calculyatorpominok.R
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
-    private var webViewDateOfDeath: WebView? = null
     private var textViewDateOfDeathCaption: TextView? = null
     private var textViewDateOfDeathDescription: TextView? = null
     private var toolbar: Toolbar? = null
@@ -40,7 +39,6 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        webViewDateOfDeath = view.findViewById(R.id.webViewDateOfDeath)
         textViewDateOfDeathCaption = view.findViewById(R.id.textDateOfDeathCaption)
         textViewDateOfDeathDescription = view.findViewById(R.id.textViewDateOfDeath)
 
@@ -59,12 +57,7 @@ class DetailsFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { detailsState ->
                     textViewDateOfDeathCaption?.text = getString(detailsState.dayDateOfDeathCaption)
-                    textViewDateOfDeathDescription?.text = HtmlCompat.fromHtml(getString(detailsState.detailsDateOfDeath), FROM_HTML_MODE_LEGACY)
-                    webViewDateOfDeath?.loadData(
-                        getString(detailsState.detailsDateOfDeath),
-                        "text/html; charset=utf-8",
-                        "utf-8"
-                    )
+                    textViewDateOfDeathDescription?.text = HtmlCompat.fromHtml(getString(detailsState.detailsDateOfDeathDescription), FROM_HTML_MODE_LEGACY)
                 }
             }
         }
