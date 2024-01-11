@@ -12,14 +12,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
+import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.calculyatorpominok.presentation.screens.SettingsFragment
 import com.calculyatorpominok.presentation.screens.SettingsFragment.Companion.SETTINGS_FRAGMENT
@@ -158,11 +161,13 @@ class MainFragment : Fragment() {
                     datePicker?.show(parentFragmentManager, "datePicker")
                     true
                 }
+
                 R.id.settings -> {
                     // Navigate to settings screen.
-                    openSettings ()
+                    openSettings()
                     true
                 }
+
                 else -> false
             }
         }
@@ -173,11 +178,15 @@ class MainFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { mainState ->
                     textViewDateOfDeath?.text = getDate(mainState.dateOfDeath, DATE_FORMAT_DEATH)
-                    textViewDateOfDeathThree?.text = getDate(mainState.threeDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathThree?.text =
+                        getDate(mainState.threeDateOfDeath, DATE_FORMAT)
                     textViewDateOfDeathNine?.text = getDate(mainState.nineDateOfDeath, DATE_FORMAT)
-                    textViewDateOfDeathForty?.text = getDate(mainState.fortyDateOfDeath, DATE_FORMAT)
-                    textViewDateOfDeathSixMonth?.text = getDate(mainState.sixMonthDateOfDeath, DATE_FORMAT)
-                    textViewDateOfDeathOneYear?.text = getDate(mainState.oneYearDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathForty?.text =
+                        getDate(mainState.fortyDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathSixMonth?.text =
+                        getDate(mainState.sixMonthDateOfDeath, DATE_FORMAT)
+                    textViewDateOfDeathOneYear?.text =
+                        getDate(mainState.oneYearDateOfDeath, DATE_FORMAT)
                     when (mainState.typeOfTheme) {
                         TypeOfTheme.AUTO -> AppCompatDelegate.setDefaultNightMode(
                             if (resources.configuration.uiMode and
@@ -188,8 +197,22 @@ class MainFragment : Fragment() {
                                 AppCompatDelegate.MODE_NIGHT_NO
                             }
                         )
+
                         TypeOfTheme.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         TypeOfTheme.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
+                    when (mainState.typeOfLanguage) {
+                        TypeOfLanguage.AUTO -> (
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                requireActivity().applicationContext.resources.configuration.locales.get(
+                                    0
+                                ).language.mapToLanguage()
+                            } else {
+                                requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
+                            }
+                            )
+                        TypeOfLanguage.RUSSIAN -> setLocale(TypeOfLanguage.RUSSIAN)
+                        TypeOfLanguage.ENGLISH -> setLocale(TypeOfLanguage.ENGLISH)
                     }
                 }
             }
@@ -206,7 +229,8 @@ class MainFragment : Fragment() {
             )
             .commit()
     }
-    private fun openSettings () {
+
+    private fun openSettings() {
         val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
         val settingsFragment = SettingsFragment.newInstance()
         fragmentTransaction.add(R.id.containerFragment, settingsFragment)
@@ -216,6 +240,7 @@ class MainFragment : Fragment() {
             )
             .commit()
     }
+
     private fun getDate(milliSeconds: Long, dateFormat: String?): String {
         //TODO лучше не использовать Locale.getDefault() - медленно работает
         val formatter = SimpleDateFormat(dateFormat, getCurrentLocale(requireContext()))
@@ -230,6 +255,11 @@ class MainFragment : Fragment() {
         } else {
             context.resources.configuration.locale
         }
+    }
+
+    private fun setLocale(typeOfLanguage: TypeOfLanguage) {
+        val appLocale = LocaleListCompat.forLanguageTags(typeOfLanguage.value) // or use "xx-YY"
+        AppCompatDelegate.setApplicationLocales(appLocale)
     }
 
     companion object {

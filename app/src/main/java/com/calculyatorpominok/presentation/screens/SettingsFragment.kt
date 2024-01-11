@@ -2,6 +2,7 @@ package com.calculyatorpominok.presentation.screens
 
 import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.example.calculyatorpominok.R
@@ -86,7 +88,7 @@ class SettingsFragment : Fragment() {
                     R.id.radioButtonAutoTheme -> {
                         viewModel.saveTheme(TypeOfTheme.AUTO)
                         AppCompatDelegate.setDefaultNightMode(
-                            if (resources.configuration.uiMode and
+                            if (requireActivity().applicationContext.resources.configuration.uiMode and
                                 Configuration.UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
                             ) {
                                 AppCompatDelegate.MODE_NIGHT_YES
@@ -113,6 +115,13 @@ class SettingsFragment : Fragment() {
 
                     R.id.radioButtonAutoLanguage -> {
                         viewModel.saveLanguage(TypeOfLanguage.AUTO)
+                        setLocale(
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                requireActivity().applicationContext.resources.configuration.locales.get(0).language.mapToLanguage()
+                            } else {
+                                requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
+                            }
+                        )
                     }
                 }
             }
@@ -141,11 +150,6 @@ class SettingsFragment : Fragment() {
     private fun setLocale(typeOfLanguage: TypeOfLanguage) {
         val appLocale = LocaleListCompat.forLanguageTags(typeOfLanguage.value) // or use "xx-YY"
         AppCompatDelegate.setApplicationLocales(appLocale)
-//        val config = resources.configuration
-//        val locale = Locale(typeOfLanguage.value)
-//        Locale.setDefault(locale)
-//        config.setLocale(locale)
-//        requireContext().createConfigurationContext(config)
     }
 
     companion object {
