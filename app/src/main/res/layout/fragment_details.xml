@@ -13,8 +13,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/toolbar_main_fragment"
             android:background="?attr/android:colorBackground"
+            app:menu="@menu/toolbar_settings_fragment"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp">
+            android:layout_margin="16dp">
 
             <TextView
                 android:id="@+id/textDateOfDeathCaption"
@@ -43,24 +43,26 @@
                 android:textColor="?attr/colorPrimary"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                tools:text="@string/date_of_death_3day_caption"
-                app:layout_constraintBottom_toTopOf="@id/webViewDateOfDeath"
+                app:layout_constraintBottom_toTopOf="@id/textViewDateOfDeath"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-            <WebView
+                tools:text="@string/date_of_death_3day_caption" />
+
+            <TextView
+                android:id="@+id/textViewDateOfDeath"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/webViewDateOfDeath"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:gravity="left"
+                android:textColor="?attr/colorSecondary"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textDateOfDeathCaption"
-                />
-
+                tools:text="@string/three_day_description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

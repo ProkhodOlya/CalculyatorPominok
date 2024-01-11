@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.text.HtmlCompat
+import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
+import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.calculyatorpominok.mapper.mapToDayOfCommemoration
-import com.calculyatorpominok.presentation.main.MainViewModel
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
-import com.calculyatorpominok.utils.DayOfCommemoration
 import com.example.calculyatorpominok.R
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {
-    private var webViewDateOfDeath: WebView? = null
     private var textViewDateOfDeathCaption: TextView? = null
+    private var textViewDateOfDeathDescription: TextView? = null
     private var toolbar: Toolbar? = null
     private val viewModel: DetailsViewModel by viewModels { DetailsViewModel.Factory }
 
@@ -39,8 +39,8 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        webViewDateOfDeath = view.findViewById(R.id.webViewDateOfDeath)
         textViewDateOfDeathCaption = view.findViewById(R.id.textDateOfDeathCaption)
+        textViewDateOfDeathDescription = view.findViewById(R.id.textViewDateOfDeath)
 
         return view
     }
@@ -56,12 +56,8 @@ class DetailsFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { detailsState ->
-                    textViewDateOfDeathCaption?.text = detailsState.dayDateOfDeathCaption
-                    webViewDateOfDeath?.loadData(
-                        detailsState.detailsDateOfDeath,
-                        "text/html; charset=utf-8",
-                        "utf-8"
-                    )
+                    textViewDateOfDeathCaption?.text = getString(detailsState.dayDateOfDeathCaption)
+                    textViewDateOfDeathDescription?.text = HtmlCompat.fromHtml(getString(detailsState.detailsDateOfDeathDescription), FROM_HTML_MODE_LEGACY)
                 }
             }
         }
