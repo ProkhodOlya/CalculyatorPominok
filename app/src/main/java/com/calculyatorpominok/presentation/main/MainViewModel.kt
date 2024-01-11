@@ -50,12 +50,15 @@ class MainViewModel(
         calendar.timeInMillis = selection
         calendar.add(calendarField, amount)
         return calendar.timeInMillis
-//        return getDate(timeInMillis, DATE_FORMAT)
     }
 
     fun onSelectDate(selection: Long) {
         dateRepository.setSavedDate(selection)
-        updateState(selection,  typeOfTheme = _state.value.typeOfTheme, typeOfLanguage = _state.value.typeOfLanguage)
+        updateState(
+            selection,
+            typeOfTheme = _state.value.typeOfTheme,
+            typeOfLanguage = _state.value.typeOfLanguage
+        )
     }
 
     private fun updateState(time: Long, typeOfTheme: TypeOfTheme, typeOfLanguage: TypeOfLanguage) {
