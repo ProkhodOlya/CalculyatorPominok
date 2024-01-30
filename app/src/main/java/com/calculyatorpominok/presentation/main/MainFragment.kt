@@ -208,6 +208,7 @@ class MainFragment : Fragment() {
                                     0
                                 ).language.mapToLanguage()
                             } else {
+                                @Suppress("DEPRECATION")
                                 requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
                             }
                             )
@@ -249,10 +250,11 @@ class MainFragment : Fragment() {
         return formatter.format(calendar.time)
     }
 
-    fun getCurrentLocale(context: Context): Locale? {
+    private fun getCurrentLocale(context: Context): Locale? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             context.resources.configuration.locales[0]
         } else {
+            @Suppress("DEPRECATION")
             context.resources.configuration.locale
         }
     }

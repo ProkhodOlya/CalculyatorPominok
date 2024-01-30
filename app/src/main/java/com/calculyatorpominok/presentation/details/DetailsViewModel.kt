@@ -1,11 +1,9 @@
 package com.calculyatorpominok.presentation.details
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.calculyatorpominok.data.ResourceProvider
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
 import com.calculyatorpominok.presentation.models.DetailsState
 import com.calculyatorpominok.utils.DayOfCommemoration
@@ -14,7 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class DetailsViewModel() : ViewModel() {
+class DetailsViewModel : ViewModel() {
     private val _state: MutableStateFlow<DetailsState> = MutableStateFlow(DetailsState(0, 0))
     val state: StateFlow<DetailsState> = _state
 
