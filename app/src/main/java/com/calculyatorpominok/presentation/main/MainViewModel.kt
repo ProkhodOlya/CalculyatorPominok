@@ -15,11 +15,12 @@ import com.calculyatorpominok.presentation.models.MainState
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import java.util.Calendar
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class MainViewModel constructor(
+class MainViewModel @Inject constructor(
     private val dateRepository: DateRepository,
     private val themeRepository: ThemeRepository,
     private val languageRepository: LanguageRepository

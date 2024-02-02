@@ -3,9 +3,10 @@ package com.calculyatorpominok.data
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 
-class ThemeRepository private constructor(context: Context) {
+class ThemeRepository @Inject private constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref-theme", MODE_PRIVATE)
 

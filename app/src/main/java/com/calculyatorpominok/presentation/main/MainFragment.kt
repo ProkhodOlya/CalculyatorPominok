@@ -20,7 +20,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.R
+import com.calculyatorpominok.appComponent
 import com.calculyatorpominok.di.AppComponent
+import com.calculyatorpominok.di.DaggerAppComponent
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
@@ -35,6 +37,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 
@@ -59,12 +62,16 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
+//    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        val appComponent: AppComponent = DaggerAppCom
-//    }
+    @Inject
+    lateinit var viewModel: MainViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireContext().appComponent.inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -217,6 +224,7 @@ class MainFragment : Fragment() {
                                 requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
                             }
                             )
+
                         TypeOfLanguage.RUSSIAN -> setLocale(TypeOfLanguage.RUSSIAN)
                         TypeOfLanguage.ENGLISH -> setLocale(TypeOfLanguage.ENGLISH)
                     }
