@@ -19,6 +19,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.R
+import com.calculyatorpominok.di.AppComponent
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
@@ -27,7 +29,6 @@ import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.calculyatorpominok.presentation.screens.SettingsFragment
 import com.calculyatorpominok.presentation.screens.SettingsFragment.Companion.SETTINGS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
-import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -60,6 +61,10 @@ class MainFragment : Fragment() {
     private var constraintDetailsOneYear: ConstraintLayout? = null
     private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        val appComponent: AppComponent = DaggerAppCom
+//    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

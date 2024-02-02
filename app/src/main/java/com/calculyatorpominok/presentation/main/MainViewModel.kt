@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class MainViewModel(
+class MainViewModel constructor(
     private val dateRepository: DateRepository,
     private val themeRepository: ThemeRepository,
     private val languageRepository: LanguageRepository
@@ -85,7 +85,9 @@ class MainViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val dateRepository =
-                    DateRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+                    DateRepository.getInstance(
+                        context = (this[APPLICATION_KEY] as Application).applicationContext
+                    )
                 val themeRepository =
                     ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
                 val languageRepository =

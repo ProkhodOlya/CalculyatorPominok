@@ -7,7 +7,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.calculyatorpominok.mapper.mapToDayOfCommemoration
 import com.calculyatorpominok.presentation.models.DetailsState
 import com.calculyatorpominok.utils.DayOfCommemoration
-import com.example.calculyatorpominok.R
+import com.calculyatorpominok.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

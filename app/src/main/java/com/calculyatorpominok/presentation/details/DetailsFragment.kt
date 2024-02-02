@@ -16,7 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.utils.ARGS_DAY_OF_COMMEMORATION
-import com.example.calculyatorpominok.R
+import com.calculyatorpominok.R
 import kotlinx.coroutines.launch
 
 class DetailsFragment : Fragment() {

@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.example.calculyatorpominok"
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -26,15 +26,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
+    namespace = "com.calculyatorpominok"
 }
 
-val daggerVersion = "2.36"
+val daggerVersion = "2.50"
 val dagger = "com.google.dagger:dagger:$daggerVersion"
 val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 

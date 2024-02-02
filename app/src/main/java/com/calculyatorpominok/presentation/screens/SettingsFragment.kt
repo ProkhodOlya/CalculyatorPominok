@@ -19,11 +19,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.R
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
-import com.example.calculyatorpominok.R
-import java.util.Locale
 import kotlinx.coroutines.launch
 
 

@@ -2,10 +2,7 @@ package com.calculyatorpominok.data
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.calculyatorpominok.mapper.mapToDayOfCommemoration
-import com.calculyatorpominok.presentation.models.DetailsState
 import com.calculyatorpominok.utils.DayOfCommemoration
-import com.example.calculyatorpominok.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
