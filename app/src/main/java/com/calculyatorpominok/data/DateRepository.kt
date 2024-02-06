@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import javax.inject.Inject
 
 
-class DateRepository @Inject private constructor(context: Context) {
+class DateRepository @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref", MODE_PRIVATE)
 

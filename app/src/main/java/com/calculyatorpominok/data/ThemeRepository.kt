@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import javax.inject.Inject
 
 
-class ThemeRepository @Inject private constructor(context: Context) {
+class ThemeRepository @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref-theme", MODE_PRIVATE)
 

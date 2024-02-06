@@ -7,7 +7,7 @@ import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import javax.inject.Inject
 
 
-class LanguageRepository @Inject private constructor(context: Context) {
+class LanguageRepository @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref-language", MODE_PRIVATE)
 

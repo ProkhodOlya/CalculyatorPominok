@@ -83,22 +83,21 @@ class MainViewModel @Inject constructor(
         private const val FORTY_DATE = 40 - 1
         private const val SIXMONTH_DATE = 6
         private const val ONEYEAR_DATE = 1
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val dateRepository =
-                    DateRepository.getInstance(
-                        context = (this[APPLICATION_KEY] as Application).applicationContext
-                    )
-                val themeRepository =
-                    ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
-                val languageRepository =
-                    LanguageRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
-                MainViewModel(
-                    dateRepository = dateRepository,
-                    themeRepository = themeRepository,
-                    languageRepository = languageRepository
-                )
-            }
-        }
+
+//        val Factory: ViewModelProvider.Factory = viewModelFactory {
+//            initializer {
+//                val dateRepository =
+//                    DateRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                val themeRepository =
+//                    ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                val languageRepository =
+//                    LanguageRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                MainViewModel(
+//                    dateRepository = dateRepository,
+//                    themeRepository = themeRepository,
+//                    languageRepository = languageRepository
+//                )
+//            }
+//        }
     }
 }
