@@ -23,12 +23,12 @@ class DateRepository @Inject constructor(context: Context) {
 
     companion object {
         const val SAVED_DATE = "savedDate"
-        private var instance: DateRepository? = null
-        fun getInstance(context: Context): DateRepository {
-            if(instance == null) {
-                instance = DateRepository(context)
-            }
-            return instance ?: DateRepository(context)
-        }
+//        private var instance: DateRepository? = null
+//        fun getInstance(context: Context): DateRepository {
+//            if(instance == null) {
+//                instance = DateRepository(context)
+//            }
+//            return instance ?: DateRepository(context)
+//        }
     }
 }

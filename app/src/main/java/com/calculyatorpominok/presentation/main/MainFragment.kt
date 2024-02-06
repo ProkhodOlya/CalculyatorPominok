@@ -20,9 +20,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.R
-import com.calculyatorpominok.appComponent
-import com.calculyatorpominok.di.AppComponent
-
+import com.calculyatorpominok.di.DaggerMainComponent
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
@@ -70,12 +68,11 @@ class MainFragment : Fragment() {
    lateinit var factory: MainViewModel.Factory
 
     override fun onAttach(context: Context) {
-       context.appComponent.inject(this)
+        DaggerMainComponent.create().inject(this)
         super.onAttach(context)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requireContext().appComponent.inject(this)
     }
 
     override fun onCreateView(

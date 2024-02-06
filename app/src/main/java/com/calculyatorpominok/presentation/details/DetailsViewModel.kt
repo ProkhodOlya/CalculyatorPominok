@@ -64,13 +64,4 @@ class DetailsViewModel : ViewModel() {
                 )
             }
         }
-
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                DetailsViewModel()
-            }
-        }
-    }
 }
