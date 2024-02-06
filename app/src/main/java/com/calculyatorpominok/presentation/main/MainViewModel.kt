@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val dateRepository: DateRepository,
     private val themeRepository: ThemeRepository,
     private val languageRepository: LanguageRepository
@@ -32,6 +32,17 @@ class MainViewModel @Inject constructor(
         )
     )
     val state: StateFlow<MainState> = _state
+
+    class Factory @Inject constructor(
+        private val dateRepository: DateRepository,
+        private val themeRepository: ThemeRepository,
+        private val languageRepository: LanguageRepository
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return MainViewModel(dateRepository, themeRepository, languageRepository) as T
+        }
+    }
 
     fun start() {
         val time = dateRepository.getSavedDate().let { savedDate ->

@@ -22,7 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.calculyatorpominok.R
 import com.calculyatorpominok.appComponent
 import com.calculyatorpominok.di.AppComponent
-import com.calculyatorpominok.di.DaggerAppComponent
+
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
@@ -62,12 +62,17 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
-//    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
+    private val viewModel: MainViewModel by viewModels {
+        factory
+    }
 
     @Inject
-   lateinit var viewModel: MainViewModel
+   lateinit var factory: MainViewModel.Factory
 
-
+    override fun onAttach(context: Context) {
+       context.appComponent.inject(this)
+        super.onAttach(context)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireContext().appComponent.inject(this)
