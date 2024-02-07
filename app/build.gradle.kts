@@ -8,7 +8,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.calculyatorpominok"
+        applicationId = "com.calculyatorpominok"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -40,6 +40,8 @@ val dagger = "com.google.dagger:dagger:$daggerVersion"
 val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 
 dependencies {
+
+    implementation("com.yandex.android:mobileads:6.3.0")
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.0-beta01")
     implementation("com.google.android.material:material:1.7.0")
