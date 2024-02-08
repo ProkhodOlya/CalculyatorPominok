@@ -239,7 +239,7 @@ class MainFragment : Fragment() {
     private fun openDetails(dayOfCommemoration: DayOfCommemoration) {
         val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
         val detailsFragment = DetailsFragment.newInstance(dayOfCommemoration.value)
-        fragmentTransaction.add(R.id.containerFragment, detailsFragment, DETAILS_FRAGMENT)
+        fragmentTransaction.add(R.id.containerFragmentForFragment, detailsFragment, DETAILS_FRAGMENT)
             .addToBackStack(DETAILS_FRAGMENT)
             .setCustomAnimations(
                 android.R.animator.fade_in, android.R.animator.fade_out
@@ -250,7 +250,7 @@ class MainFragment : Fragment() {
     private fun openSettings() {
         val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
         val settingsFragment = SettingsFragment.newInstance()
-        fragmentTransaction.add(R.id.containerFragment, settingsFragment)
+        fragmentTransaction.add(R.id.containerFragmentForFragment, settingsFragment)
             .addToBackStack(SETTINGS_FRAGMENT)
             .setCustomAnimations(
                 android.R.animator.fade_in, android.R.animator.fade_out
