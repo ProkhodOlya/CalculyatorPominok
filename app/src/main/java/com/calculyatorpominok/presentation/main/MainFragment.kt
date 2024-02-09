@@ -19,6 +19,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.R
+import com.calculyatorpominok.di.DaggerMainComponent
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.details.DetailsFragment
 import com.calculyatorpominok.presentation.details.DetailsFragment.Companion.DETAILS_FRAGMENT
@@ -27,13 +29,13 @@ import com.calculyatorpominok.presentation.models.TypeOfTheme
 import com.calculyatorpominok.presentation.screens.SettingsFragment
 import com.calculyatorpominok.presentation.screens.SettingsFragment.Companion.SETTINGS_FRAGMENT
 import com.calculyatorpominok.utils.DayOfCommemoration
-import com.example.calculyatorpominok.R
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 
@@ -58,7 +60,20 @@ class MainFragment : Fragment() {
     private var constraintDetailsFortyDay: ConstraintLayout? = null
     private var constraintDetailsSixMonth: ConstraintLayout? = null
     private var constraintDetailsOneYear: ConstraintLayout? = null
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
+    private val viewModel: MainViewModel by viewModels {
+        factory
+    }
+
+    @Inject
+   lateinit var factory: MainViewModel.Factory
+
+    override fun onAttach(context: Context) {
+        DaggerMainComponent.create().inject(this)
+        super.onAttach(context)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -208,9 +223,11 @@ class MainFragment : Fragment() {
                                     0
                                 ).language.mapToLanguage()
                             } else {
+                                @Suppress("DEPRECATION")
                                 requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
                             }
                             )
+
                         TypeOfLanguage.RUSSIAN -> setLocale(TypeOfLanguage.RUSSIAN)
                         TypeOfLanguage.ENGLISH -> setLocale(TypeOfLanguage.ENGLISH)
                     }
@@ -222,7 +239,7 @@ class MainFragment : Fragment() {
     private fun openDetails(dayOfCommemoration: DayOfCommemoration) {
         val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
         val detailsFragment = DetailsFragment.newInstance(dayOfCommemoration.value)
-        fragmentTransaction.add(R.id.containerFragment, detailsFragment, DETAILS_FRAGMENT)
+        fragmentTransaction.add(R.id.containerFragmentForFragment, detailsFragment, DETAILS_FRAGMENT)
             .addToBackStack(DETAILS_FRAGMENT)
             .setCustomAnimations(
                 android.R.animator.fade_in, android.R.animator.fade_out
@@ -233,7 +250,7 @@ class MainFragment : Fragment() {
     private fun openSettings() {
         val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
         val settingsFragment = SettingsFragment.newInstance()
-        fragmentTransaction.add(R.id.containerFragment, settingsFragment)
+        fragmentTransaction.add(R.id.containerFragmentForFragment, settingsFragment)
             .addToBackStack(SETTINGS_FRAGMENT)
             .setCustomAnimations(
                 android.R.animator.fade_in, android.R.animator.fade_out
@@ -249,10 +266,11 @@ class MainFragment : Fragment() {
         return formatter.format(calendar.time)
     }
 
-    fun getCurrentLocale(context: Context): Locale? {
+    private fun getCurrentLocale(context: Context): Locale? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             context.resources.configuration.locales[0]
         } else {
+            @Suppress("DEPRECATION")
             context.resources.configuration.locale
         }
     }

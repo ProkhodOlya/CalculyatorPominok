@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
+import javax.inject.Inject
 
 
-class LanguageRepository private constructor(context: Context) {
+class LanguageRepository @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref-language", MODE_PRIVATE)
 

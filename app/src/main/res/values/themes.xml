@@ -31,5 +31,6 @@
     <style name="Toolbar" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/md_theme_light_primary</item>
         <item name="titleTextColor">@color/md_theme_light_primary</item>
+        <item name="navigationIconTint">@color/md_theme_light_primary</item>
     </style>
 </resources>

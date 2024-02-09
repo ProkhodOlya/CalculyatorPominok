@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/android:colorBackground"
-            app:menu="@menu/toolbar_settings_fragment"
             app:title="@string/settings" />
 
     </com.google.android.material.appbar.AppBarLayout>

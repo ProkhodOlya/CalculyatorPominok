@@ -1,11 +1,7 @@
 package com.calculyatorpominok.presentation.main
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.calculyatorpominok.data.DateRepository
 import com.calculyatorpominok.data.LanguageRepository
 import com.calculyatorpominok.data.ThemeRepository
@@ -15,6 +11,7 @@ import com.calculyatorpominok.presentation.models.MainState
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
 import java.util.Calendar
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -31,6 +28,17 @@ class MainViewModel(
         )
     )
     val state: StateFlow<MainState> = _state
+
+    class Factory @Inject constructor(
+        private val dateRepository: DateRepository,
+        private val themeRepository: ThemeRepository,
+        private val languageRepository: LanguageRepository
+    ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return MainViewModel(dateRepository, themeRepository, languageRepository) as T
+        }
+    }
 
     fun start() {
         val time = dateRepository.getSavedDate().let { savedDate ->
@@ -82,20 +90,21 @@ class MainViewModel(
         private const val FORTY_DATE = 40 - 1
         private const val SIXMONTH_DATE = 6
         private const val ONEYEAR_DATE = 1
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val dateRepository =
-                    DateRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
-                val themeRepository =
-                    ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
-                val languageRepository =
-                    LanguageRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
-                MainViewModel(
-                    dateRepository = dateRepository,
-                    themeRepository = themeRepository,
-                    languageRepository = languageRepository
-                )
-            }
-        }
+
+//        val Factory: ViewModelProvider.Factory = viewModelFactory {
+//            initializer {
+//                val dateRepository =
+//                    DateRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                val themeRepository =
+//                    ThemeRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                val languageRepository =
+//                    LanguageRepository.getInstance((this[APPLICATION_KEY] as Application).applicationContext)
+//                MainViewModel(
+//                    dateRepository = dateRepository,
+//                    themeRepository = themeRepository,
+//                    languageRepository = languageRepository
+//                )
+//            }
+//        }
     }
 }

@@ -3,9 +3,10 @@ package com.calculyatorpominok.data
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 
-class DateRepository private constructor(context: Context) {
+class DateRepository @Inject constructor(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("config-pref", MODE_PRIVATE)
 
@@ -22,12 +23,12 @@ class DateRepository private constructor(context: Context) {
 
     companion object {
         const val SAVED_DATE = "savedDate"
-        private var instance: DateRepository? = null
-        fun getInstance(context: Context): DateRepository {
-            if(instance == null) {
-                instance = DateRepository(context)
-            }
-            return instance ?: DateRepository(context)
-        }
+//        private var instance: DateRepository? = null
+//        fun getInstance(context: Context): DateRepository {
+//            if(instance == null) {
+//                instance = DateRepository(context)
+//            }
+//            return instance ?: DateRepository(context)
+//        }
     }
 }

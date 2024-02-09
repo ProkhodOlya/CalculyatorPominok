@@ -1,5 +1,6 @@
 package com.calculyatorpominok.presentation.screens
 
+import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Build
@@ -11,19 +12,20 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.calculyatorpominok.R
+import com.calculyatorpominok.di.DaggerSettingsComponent
 import com.calculyatorpominok.mapper.mapToLanguage
 import com.calculyatorpominok.presentation.models.TypeOfLanguage
 import com.calculyatorpominok.presentation.models.TypeOfTheme
-import com.example.calculyatorpominok.R
-import java.util.Locale
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 
@@ -38,8 +40,19 @@ class SettingsFragment : Fragment() {
     private var radioButtonRussian: RadioButton? = null
     private var radioButtonEnglish: RadioButton? = null
     private var radioButtonAutoLanguage: RadioButton? = null
-    private val viewModel: SettingsViewModel by viewModels { SettingsViewModel.Factory }
+    private val viewModel: SettingsViewModel by viewModels { factory}
 
+    @Inject
+    lateinit var factory: SettingsViewModel.Factory
+
+    override fun onAttach(context: Context) {
+        DaggerSettingsComponent.create().inject(this)
+        super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
