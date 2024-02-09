@@ -21,14 +21,14 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </FrameLayout>
 
-<!--    <com.yandex.mobile.ads.banner.BannerAdView-->
-<!--        android:id="@+id/ad_container_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/containerFragmentForFragment" />-->
+    <com.yandex.mobile.ads.banner.BannerAdView
+        android:id="@+id/ad_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerFragmentForFragment" />
 
     <TextView
         android:id="@+id/textAds"
