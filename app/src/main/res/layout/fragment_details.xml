@@ -13,6 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            style="@style/Toolbar"
             android:background="?attr/android:colorBackground"
             app:title="@string/app_name" />
 
