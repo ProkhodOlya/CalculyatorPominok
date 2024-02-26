@@ -39,8 +39,7 @@ dependencyResolutionManagement {
 //        maven {
 //            url "https://dl.appnext.com/"
 //        }
-//    }
-}
-rootProject.name = "CalculyatorPominok"
-include ':app'
+    }
+    rootProject.name = "CalculyatorPominok"
+    include ':app'
 }
