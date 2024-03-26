@@ -83,7 +83,8 @@ class FragmentForFragment : Fragment() {
     private fun loadBannerAd(adSize: BannerAdSize): BannerAdView? {
         return bannerAd?.apply {
             setAdSize(adSize)
-            setAdUnitId("demo-banner-mytarget") //Вставить реальный блок ID из партнерского интерфейса, было "demo-banner-yandex"
+            // TODO - Вставить реальный блок ID из партнерского интерфейса, было "demo-banner-yandex"
+            setAdUnitId("demo-banner-mytarget")
             setBannerAdEventListener(object : BannerAdEventListener {
                 override fun onAdLoaded() {
                     // If this callback occurs after the activity is destroyed, you

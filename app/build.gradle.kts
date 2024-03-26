@@ -43,7 +43,6 @@ dependencies {
 
     implementation("com.yandex.android:mobileads:6.4.0")
     implementation("com.yandex.ads.mediation:mobileads-mytarget:5.20.0.0")
-//    implementation("com.yandex.android:mobileads-mediation:6.4.0.0")
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.6.0-beta01")
     implementation("com.google.android.material:material:1.7.0")
