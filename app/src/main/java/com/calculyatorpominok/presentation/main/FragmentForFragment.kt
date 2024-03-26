@@ -22,6 +22,7 @@ import kotlin.math.roundToInt
 class FragmentForFragment : Fragment() {
     private var containerFragmentForFragment: FrameLayout? = null
     private var bannerAd: BannerAdView? = null
+    private var viewClose: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +32,7 @@ class FragmentForFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_container, container, false)
         containerFragmentForFragment = view.findViewById(R.id.containerFragmentForFragment)
         bannerAd = view.findViewById(R.id.ad_container_view)
+        viewClose = view.findViewById(R.id.ad_view_close)
 
         initView()
         return view
@@ -45,6 +47,10 @@ class FragmentForFragment : Fragment() {
                 bannerAd = loadBannerAd(adSize)
             }
         })
+        viewClose?.setOnClickListener {
+            viewClose?.visibility = View.GONE
+            bannerAd?.visibility = View.GONE
+        }
     }
 
     private fun openMainFragment() {
