@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -51,7 +50,6 @@ class MainFragment : Fragment() {
     private var textViewDateOfDeathSixMonthDetails: TextView? = null
     private var textViewDateOfDeathOneYear: TextView? = null
     private var textViewDateOfDeathOneYearDetails: TextView? = null
-    private var button: Button? = null
     private var datePicker: MaterialDatePicker<Long>? = null
     private var toolbar: Toolbar? = null
     private var constraintDateOfDeath: ConstraintLayout? = null
@@ -98,7 +96,6 @@ class MainFragment : Fragment() {
         constraintDetailsFortyDay = view.findViewById(R.id.constraintDateOfDeathForty)
         constraintDetailsSixMonth = view.findViewById(R.id.constraintDateOfDeathSixMonths)
         constraintDetailsOneYear = view.findViewById(R.id.constraintDateOfDeathOneYear)
-        button = view.findViewById(R.id.button)
         toolbar = view.findViewById(R.id.toolbar)
 
         return view
@@ -114,7 +111,6 @@ class MainFragment : Fragment() {
     private fun initView() {
         initToolbar()
         initDatePicker()
-        button?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
         constraintDateOfDeath?.setOnClickListener { datePicker?.show(parentFragmentManager, "tag") }
 
         textViewDateOfDeathThreeDetails?.setOnClickListener {

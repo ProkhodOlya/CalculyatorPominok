@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.calculyatorpominok.R
@@ -22,10 +21,8 @@ import kotlin.math.roundToInt
 
 class FragmentForFragment : Fragment() {
     private var containerFragmentForFragment: FrameLayout? = null
-    private var textViewJust1: TextView? = null
     private var bannerAd: BannerAdView? = null
-//    private var textAds: TextView? = null
-
+    private var viewClose: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +31,8 @@ class FragmentForFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_container, container, false)
         containerFragmentForFragment = view.findViewById(R.id.containerFragmentForFragment)
-        textViewJust1 = view.findViewById(R.id.textViewJust1)
         bannerAd = view.findViewById(R.id.ad_container_view)
+        viewClose = view.findViewById(R.id.ad_view_close)
 
         initView()
         return view
@@ -50,6 +47,10 @@ class FragmentForFragment : Fragment() {
                 bannerAd = loadBannerAd(adSize)
             }
         })
+        viewClose?.setOnClickListener {
+            viewClose?.visibility = View.GONE
+            bannerAd?.visibility = View.GONE
+        }
     }
 
     private fun openMainFragment() {
@@ -82,7 +83,8 @@ class FragmentForFragment : Fragment() {
     private fun loadBannerAd(adSize: BannerAdSize): BannerAdView? {
         return bannerAd?.apply {
             setAdSize(adSize)
-            setAdUnitId("demo-banner-yandex") //Вставить реальный блок ID из партнерского интерфейса
+            // TODO - Вставить реальный блок ID из партнерского интерфейса, было "demo-banner-yandex"
+            setAdUnitId("demo-banner-mytarget")
             setBannerAdEventListener(object : BannerAdEventListener {
                 override fun onAdLoaded() {
                     // If this callback occurs after the activity is destroyed, you
