@@ -8,6 +8,7 @@ import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.calculyatorpominok.BuildConfig
 import com.calculyatorpominok.R
 import com.calculyatorpominok.presentation.main.MainFragment.Companion.MAIN_FRAGMENT
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -83,8 +84,8 @@ class FragmentForFragment : Fragment() {
     private fun loadBannerAd(adSize: BannerAdSize): BannerAdView? {
         return bannerAd?.apply {
             setAdSize(adSize)
-            // TODO - Вставить реальный блок ID из партнерского интерфейса, было "demo-banner-yandex"
-            setAdUnitId("demo-banner-mytarget")
+            // TODO - Проверить, отрабатывает ли реальный блок ID из партнерского интерфейса, было "demo-banner-mytarget"
+            setAdUnitId(if (BuildConfig.DEBUG) "demo-banner-yandex" else "R-M-5859502-1")
             setBannerAdEventListener(object : BannerAdEventListener {
                 override fun onAdLoaded() {
                     // If this callback occurs after the activity is destroyed, you
@@ -95,6 +96,7 @@ class FragmentForFragment : Fragment() {
                         return
                     }
                     println(">>>YandexADS onAdLoaded")
+                    viewClose?.visibility = View.VISIBLE
                 }
 
                 override fun onAdFailedToLoad(adRequestError: AdRequestError) {
