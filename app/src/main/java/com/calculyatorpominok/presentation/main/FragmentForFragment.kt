@@ -91,7 +91,7 @@ class FragmentForFragment : Fragment() {
                     // If this callback occurs after the activity is destroyed, you
                     // must call destroy and return or you may get a memory leak.
                     // Note `isDestroyed` is a method on Activity.
-                    if (requireActivity().isDestroyed) {
+                    if (this@FragmentForFragment.isDetached || this@FragmentForFragment.isRemoving) {
                         bannerAd?.destroy()
                         return
                     }
