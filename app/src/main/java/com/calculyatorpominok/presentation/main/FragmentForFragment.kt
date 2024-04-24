@@ -44,8 +44,10 @@ class FragmentForFragment : Fragment() {
         bannerAd?.viewTreeObserver?.addOnGlobalLayoutListener(object :
             ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
-                bannerAd?.viewTreeObserver?.removeOnGlobalLayoutListener(this);
-                bannerAd = loadBannerAd(adSize)
+                bannerAd?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
+                adSize?.let {
+                    loadBannerAd(it)
+                }
             }
         })
         viewClose?.setOnClickListener {
@@ -68,18 +70,19 @@ class FragmentForFragment : Fragment() {
             .commit()
     }
 
-    private val adSize: BannerAdSize
-        get() {
-            // Calculate the width of the ad, taking into account the padding in the ad container.
-            var adWidthPixels = bannerAd?.width ?: 0
-            if (adWidthPixels == 0) {
-                // If the ad hasn't been laid out, default to the full screen width
-                adWidthPixels = resources.displayMetrics.widthPixels
-            }
-            val adWidth = (adWidthPixels / resources.displayMetrics.density).roundToInt()
+    private val adSize: BannerAdSize?
+        get() =
+            context?.let { ctx ->
+                // Calculate the width of the ad, taking into account the padding in the ad container.
+                var adWidthPixels = bannerAd?.width ?: 0
+                if (adWidthPixels == 0) {
+                    // If the ad hasn't been laid out, default to the full screen width
+                    adWidthPixels = ctx.resources.displayMetrics.widthPixels
+                }
+                val adWidth = (adWidthPixels / ctx.resources.displayMetrics.density).roundToInt()
 
-            return BannerAdSize.stickySize(requireContext(), adWidth)
-        }
+                BannerAdSize.stickySize(ctx, adWidth)
+            }
 
     private fun loadBannerAd(adSize: BannerAdSize): BannerAdView? {
         return bannerAd?.apply {
