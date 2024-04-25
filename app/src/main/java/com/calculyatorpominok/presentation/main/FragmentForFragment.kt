@@ -1,6 +1,7 @@
 package com.calculyatorpominok.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -105,6 +106,7 @@ class FragmentForFragment : Fragment() {
                 override fun onAdFailedToLoad(error: AdRequestError) {
                     // Ad failed to load with AdRequestError.
                     // Attempting to load a new ad from the onAdFailedToLoad() method is strongly discouraged.
+                    Log.e("EEEEEE", error.description)
                     println(">>>YandexADS onAdFailedToLoad")
                 }
 
