@@ -132,6 +132,7 @@ class SettingsFragment : Fragment() {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                                 requireActivity().applicationContext.resources.configuration.locales.get(0).language.mapToLanguage()
                             } else {
+                                @Suppress("DEPRECATION")
                                 requireActivity().applicationContext.resources.configuration.locale.language.mapToLanguage()
                             }
                         )

@@ -102,7 +102,7 @@ class FragmentForFragment : Fragment() {
                     viewClose?.visibility = View.VISIBLE
                 }
 
-                override fun onAdFailedToLoad(adRequestError: AdRequestError) {
+                override fun onAdFailedToLoad(error: AdRequestError) {
                     // Ad failed to load with AdRequestError.
                     // Attempting to load a new ad from the onAdFailedToLoad() method is strongly discouraged.
                     println(">>>YandexADS onAdFailedToLoad")

@@ -1,11 +1,7 @@
 package com.calculyatorpominok.presentation.screens
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.calculyatorpominok.data.LanguageRepository
 import com.calculyatorpominok.data.ThemeRepository
 import com.calculyatorpominok.mapper.mapToLanguage
@@ -32,6 +28,7 @@ class SettingsViewModel(
     ) : ViewModelProvider.Factory{
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            @Suppress("UNCHECKED_CAST")
             return SettingsViewModel(themeRepository, languageRepository) as T
         }
 

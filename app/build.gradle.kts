@@ -17,7 +17,7 @@ android {
     }
     signingConfigs {
         create("release") {
-            storeFile = file("..\\upload-keystore.jks")
+            storeFile = file("..\\key.jks")
             storePassword = "gdhjgo64)#&OLF"
             keyPassword = "gdhjgo64)#&OLF"
             keyAlias = "upload"
@@ -38,11 +38,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     namespace = "com.calculyatorpominok"
 }
@@ -53,9 +53,8 @@ val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 
 dependencies {
     implementation("com.yandex.android:mobileads:7.0.1")
-    implementation("com.yandex.ads.mediation:mobileads-mytarget:5.20.0.0")
     implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.0-beta01")
+    implementation("androidx.appcompat:appcompat:1.6.0")
     implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.fragment:fragment-ktx:1.5.7")
