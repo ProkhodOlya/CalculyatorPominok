@@ -15,6 +15,14 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        create("release") {
+            storeFile = file("..\\upload-keystore.jks")
+            storePassword = "gdhjgo64)#&OLF"
+            keyPassword = "gdhjgo64)#&OLF"
+            keyAlias = "upload"
+        }
+    }
 
     buildTypes {
         getByName("release") {
@@ -24,7 +32,11 @@ android {
                 "proguard-rules.pro"
             )
         }
+        release {
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -40,7 +52,6 @@ val dagger = "com.google.dagger:dagger:$daggerVersion"
 val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
 
 dependencies {
-
     implementation("com.yandex.android:mobileads:7.0.1")
     implementation("com.yandex.ads.mediation:mobileads-mytarget:5.20.0.0")
     implementation("androidx.core:core-ktx:1.7.0")
