@@ -31,8 +31,8 @@ class SettingsViewModel(
             @Suppress("UNCHECKED_CAST")
             return SettingsViewModel(themeRepository, languageRepository) as T
         }
-
     }
+
     fun start() {
         val theme = themeRepository.getTheme().mapToTypeOfTheme()
         val language = languageRepository.getLanguage().mapToLanguage()
